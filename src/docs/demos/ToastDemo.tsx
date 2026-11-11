@@ -13,7 +13,7 @@ export function ToastDemo() {
         <Toast
           title="Card saved"
           description="to remember · Kanji N3"
-          duration={0}
+          duration={8000}
           onDismiss={() => setVisible(false)}
           action={
             <Button variant="ghost" size="sm">
@@ -73,12 +73,18 @@ export const toastStates: SpecimenItem[] = [
   {
     label: "Paused",
     content: (
-      <Toast
-        title="Card saved"
-        description="Timer paused while hovered or focused."
-        duration={0}
-        paused
-      />
+      <div className={styles.stack}>
+        <Toast
+          title="Card saved"
+          description="Timer paused before auto-dismiss."
+          duration={6000}
+          paused
+        />
+        <p className={styles.caption}>
+          The paused prop freezes the dismiss timer. Hovering or focusing the
+          live toast pauses it the same way.
+        </p>
+      </div>
     ),
   },
   {

@@ -30,9 +30,10 @@ export function Card({
         disabled && styles.disabled,
         className,
       )}
-      aria-disabled={disabled || undefined}
       data-state={dataState}
       {...rest}
+      aria-disabled={disabled || undefined}
+      inert={disabled || undefined}
     >
       {children}
     </div>

@@ -25,6 +25,7 @@ export interface DropdownMenuProps {
   label?: string;
   onSelect?: (id: string) => void;
   align?: "start" | "end";
+  size?: "sm" | "md";
   open?: boolean;
   defaultOpen?: boolean;
   onOpenChange?: (open: boolean) => void;
@@ -39,6 +40,7 @@ export function DropdownMenu({
   label,
   onSelect,
   align = "start",
+  size = "md",
   open,
   defaultOpen = false,
   onOpenChange,
@@ -120,7 +122,7 @@ export function DropdownMenu({
       <Button
         ref={trigger}
         variant="secondary"
-        size="sm"
+        size={size}
         aria-haspopup="menu"
         aria-expanded={expanded}
         aria-controls={expanded ? menuId : undefined}
@@ -143,7 +145,11 @@ export function DropdownMenu({
           role="menu"
           aria-label={label ?? triggerLabel}
           tabIndex={-1}
-          className={cx(styles.menu, inline && styles.menuInline)}
+          className={cx(
+            styles.menu,
+            styles[size],
+            inline && styles.menuInline,
+          )}
           onKeyDown={handleMenuKeyDown}
         >
           {items.map((item) => (

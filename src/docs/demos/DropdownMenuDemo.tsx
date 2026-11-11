@@ -39,6 +39,12 @@ export const dropdownVariants: SpecimenItem[] = [
     content: <DropdownMenu triggerLabel="Deck actions" items={items} />,
   },
   {
+    label: "Small trigger",
+    content: (
+      <DropdownMenu triggerLabel="Deck actions" items={items} size="sm" />
+    ),
+  },
+  {
     label: "With separators",
     content: (
       <div className={styles.menuCell}>

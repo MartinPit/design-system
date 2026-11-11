@@ -5,6 +5,7 @@ import { Badge } from "./Badge";
 import { Breadcrumb } from "./Breadcrumb";
 import { Card } from "./Card";
 import { EmptyState } from "./EmptyState";
+import { GradientForm } from "./GradientForm";
 import { Pagination } from "./Pagination";
 import { Progress } from "./Progress";
 import { Skeleton } from "./Skeleton";
@@ -41,6 +42,25 @@ describe("Breadcrumb", () => {
       "page",
     );
   });
+
+  it("keeps collapsed middle items available to assistive technology", () => {
+    render(
+      <Breadcrumb
+        maxItems={2}
+        items={[
+          { label: "Decks", href: "#/overview" },
+          { label: "Kanji N3", href: "#/components/card" },
+          { label: "Grammar", href: "#/components/card" },
+          { label: "Particles", href: "#/components/card" },
+          { label: "Cards" },
+        ]}
+      />,
+    );
+
+    expect(screen.getByRole("link", { name: "Grammar" })).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: "Particles" })).toBeInTheDocument();
+    expect(screen.getByText("…")).toHaveAttribute("aria-hidden", "true");
+  });
 });
 
 describe("Pagination", () => {
@@ -61,6 +81,21 @@ describe("Card", () => {
     render(<Card variant="raised">Kanji N3</Card>);
 
     expect(screen.getByText("Kanji N3")).toBeInTheDocument();
+  });
+
+  it("is inert and not reachable when disabled", () => {
+    const { container } = render(
+      <Card disabled>
+        <a href="#/overview">Study deck</a>
+      </Card>,
+    );
+
+    const card = container.firstElementChild;
+    expect(card).toHaveAttribute("inert");
+    expect(card).toHaveAttribute("aria-disabled", "true");
+
+    const link = screen.getByRole("link", { name: "Study deck" });
+    expect(link.closest("[inert]")).toBe(card);
   });
 });
 
@@ -178,5 +213,26 @@ describe("EmptyState", () => {
     expect(
       screen.getByRole("heading", { name: "No cards in this deck" }),
     ).toBeInTheDocument();
+  });
+});
+
+describe("GradientForm", () => {
+  it("renders as one decorative mark with unique gradient ids", () => {
+    const { container } = render(
+      <>
+        <GradientForm />
+        <GradientForm />
+      </>,
+    );
+
+    const marks = container.querySelectorAll("svg");
+    expect(marks).toHaveLength(2);
+    expect(marks[0]).toHaveAttribute("aria-hidden", "true");
+
+    const ids = Array.from(
+      container.querySelectorAll("linearGradient"),
+    ).map((gradient) => gradient.id);
+    expect(ids).toHaveLength(2);
+    expect(new Set(ids).size).toBe(2);
   });
 });

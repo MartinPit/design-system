@@ -70,6 +70,12 @@
   cursor: pointer;
 }
 
+.sm .item {
+  min-height: 26px;
+  padding-block: 2px;
+  font-size: var(--text-xs);
+}
+
 .item:hover:not(:disabled),
 .item:focus-visible {
   background: var(--paper-2);

@@ -594,6 +594,12 @@ export const components: ComponentSpec[] = [
         defaultValue: "—",
         description: "Sets aria-invalid on the group and renders error text.",
       },
+      {
+        name: "hint",
+        type: "string",
+        defaultValue: "—",
+        description: "Supporting text under the options.",
+      },
     ],
     dos: [
       "Keep the set short and visible; four modes is already a lot.",
@@ -650,6 +656,12 @@ export const components: ComponentSpec[] = [
         type: "boolean",
         defaultValue: "false",
         description: "Blocks toggling and dims the control.",
+      },
+      {
+        name: "...rest",
+        type: "ButtonHTMLAttributes",
+        defaultValue: "—",
+        description: "Native button attributes and a forwarded ref reach the switch.",
       },
     ],
     dos: [
@@ -822,6 +834,12 @@ export const components: ComponentSpec[] = [
         defaultValue: "false",
         description: "Disables every segment.",
       },
+      {
+        name: "...rest",
+        type: "HTMLAttributes",
+        defaultValue: "—",
+        description: "Native group attributes and a forwarded ref reach the root.",
+      },
     ],
     dos: [
       "Use two to four short labels that fit on one line.",
@@ -872,6 +890,12 @@ export const components: ComponentSpec[] = [
         type: "string",
         defaultValue: '"Sections"',
         description: "Accessible name for the tablist.",
+      },
+      {
+        name: "...rest",
+        type: "HTMLAttributes",
+        defaultValue: "—",
+        description: "Native root attributes and a forwarded ref pass through.",
       },
     ],
     dos: [
@@ -975,6 +999,18 @@ export const components: ComponentSpec[] = [
         defaultValue: '"md"',
         description: "30px or 26px controls.",
       },
+      {
+        name: "label",
+        type: "string",
+        defaultValue: '"Pagination"',
+        description: "Accessible name for the navigation landmark.",
+      },
+      {
+        name: "...rest",
+        type: "HTMLAttributes",
+        defaultValue: "—",
+        description: "Native navigation attributes and a forwarded ref pass through.",
+      },
     ],
     dos: [
       "Disable the previous and next arrows at the bounds rather than hiding them.",
@@ -1015,7 +1051,8 @@ export const components: ComponentSpec[] = [
         name: "disabled",
         type: "boolean",
         defaultValue: "false",
-        description: "Dims the card and sets aria-disabled.",
+        description:
+          "Dims the card, sets aria-disabled and makes its subtree inert.",
       },
       {
         name: "...rest",
@@ -1033,7 +1070,7 @@ export const components: ComponentSpec[] = [
       "Do not add a blurred shadow; raised cards use the print offset.",
     ],
     a11y:
-      "Cards are containers, not controls. An interactive card gets its focus ring from the real action inside via focus-within, so the card never becomes an unnamed button.",
+      "Cards are containers, not controls. An interactive card gets its focus ring from the real action inside via focus-within, so the card never becomes an unnamed button. A disabled card sets inert, removing its links and buttons from the tab order and the accessibility tree.",
   },
   {
     id: "badge",
@@ -1172,6 +1209,12 @@ export const components: ComponentSpec[] = [
         defaultValue: "false",
         description: "Renders a labelled button instead of an image span.",
       },
+      {
+        name: "...rest",
+        type: "HTMLAttributes",
+        defaultValue: "—",
+        description: "Native attributes and a forwarded ref reach the button or span.",
+      },
     ],
     dos: [
       "Give every avatar a person's name, not just a file name.",
@@ -1222,6 +1265,12 @@ export const components: ComponentSpec[] = [
         description: "Accessible table name; visually hidden.",
       },
       {
+        name: "variant",
+        type: '"default" | "striped" | "compact"',
+        defaultValue: '"default"',
+        description: "Plain, striped or compact row rhythm.",
+      },
+      {
         name: "sort / onSort",
         type: "{ key; direction } / (key) => void",
         defaultValue: "—",
@@ -1230,8 +1279,14 @@ export const components: ComponentSpec[] = [
       {
         name: "selectedKeys / onSelectionChange",
         type: "string[] / (keys) => void",
-        defaultValue: "[] / —",
+        defaultValue: "[] / -",
         description: "Enables the selection column when a handler is supplied.",
+      },
+      {
+        name: "getRowLabel",
+        type: "(row: T) => string",
+        defaultValue: "row key",
+        description: "Accessible name for a row selection checkbox.",
       },
       {
         name: "loading / empty",
@@ -1494,6 +1549,12 @@ export const components: ComponentSpec[] = [
         description: "The dialog heading and accessible name.",
       },
       {
+        name: "eyebrow",
+        type: "string",
+        defaultValue: '"Confirm"',
+        description: "The small uppercase label above the title.",
+      },
+      {
         name: "description",
         type: "string",
         defaultValue: "—",
@@ -1553,6 +1614,24 @@ export const components: ComponentSpec[] = [
         type: "string",
         defaultValue: '"Actions"',
         description: "Visible trigger name and menu label fallback.",
+      },
+      {
+        name: "label",
+        type: "string",
+        defaultValue: "triggerLabel",
+        description: "Accessible name for the menu.",
+      },
+      {
+        name: "size",
+        type: '"sm" | "md"',
+        defaultValue: '"md"',
+        description: "Trigger and menu item scale.",
+      },
+      {
+        name: "onOpenChange",
+        type: "(open: boolean) => void",
+        defaultValue: "—",
+        description: "Called when the menu opens or closes.",
       },
       {
         name: "onSelect",
@@ -1638,6 +1717,12 @@ export const components: ComponentSpec[] = [
         type: "() => void",
         defaultValue: "—",
         description: "Called by the named dismiss button or the timer.",
+      },
+      {
+        name: "action",
+        type: "ReactNode",
+        defaultValue: "—",
+        description: "Optional onward action, such as Undo.",
       },
     ],
     dos: [

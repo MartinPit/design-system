@@ -1,36 +1,45 @@
-import { useId, type ReactNode } from "react";
+import {
+  forwardRef,
+  useId,
+  type ButtonHTMLAttributes,
+  type ReactNode,
+} from "react";
 import { cx } from "../../lib/cx";
 import { useControllableState } from "../../hooks/useControllableState";
 import styles from "./Switch.module.css";
 
 export type SwitchSize = "sm" | "md";
 
-export interface SwitchProps {
+export interface SwitchProps
+  extends Omit<ButtonHTMLAttributes<HTMLButtonElement>, "type" | "onChange"> {
   label: ReactNode;
   checked?: boolean;
   defaultChecked?: boolean;
   onChange?: (checked: boolean) => void;
   size?: SwitchSize;
-  disabled?: boolean;
   hint?: string;
-  id?: string;
-  className?: string;
   /** Forces a visual state for the documentation state grid. */
   "data-state"?: "hover" | "focus";
 }
 
-export function Switch({
-  label,
-  checked,
-  defaultChecked = false,
-  onChange,
-  size = "md",
-  disabled = false,
-  hint,
-  id: idProp,
-  className,
-  "data-state": dataState,
-}: SwitchProps) {
+export const Switch = forwardRef<HTMLButtonElement, SwitchProps>(function Switch(
+  {
+    label,
+    checked,
+    defaultChecked = false,
+    onChange,
+    size = "md",
+    disabled = false,
+    hint,
+    id: idProp,
+    className,
+    onClick,
+    "aria-describedby": ariaDescribedBy,
+    "data-state": dataState,
+    ...rest
+  },
+  ref,
+) {
   const autoId = useId();
   const id = idProp ?? autoId;
   const [on, setOn] = useControllableState({
@@ -38,6 +47,10 @@ export function Switch({
     defaultValue: defaultChecked,
     onChange,
   });
+  const describedBy =
+    [hint ? `${id}-hint` : undefined, ariaDescribedBy]
+      .filter(Boolean)
+      .join(" ") || undefined;
 
   return (
     <div className={cx(styles.wrap, className)}>
@@ -46,15 +59,20 @@ export function Switch({
           {label}
         </label>
         <button
+          {...rest}
+          ref={ref}
           id={id}
           type="button"
           role="switch"
           aria-checked={on}
+          aria-describedby={describedBy}
           disabled={disabled}
           data-state={dataState}
-          aria-describedby={hint ? `${id}-hint` : undefined}
           className={cx(styles.switch, styles[size])}
-          onClick={() => setOn(!on)}
+          onClick={(event) => {
+            onClick?.(event);
+            if (!event.defaultPrevented) setOn(!on);
+          }}
         >
           <span className={styles.track} aria-hidden="true">
             <span className={styles.knob} />
@@ -68,4 +86,4 @@ export function Switch({
       ) : null}
     </div>
   );
-}
+});

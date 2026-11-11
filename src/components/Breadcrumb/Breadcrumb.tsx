@@ -24,9 +24,6 @@ export function Breadcrumb({
 }: BreadcrumbProps) {
   const collapsed =
     maxItems !== undefined && items.length > maxItems && items.length > 2;
-  const visible = collapsed
-    ? [items[0], items[items.length - 1]]
-    : items;
 
   return (
     <nav
@@ -36,11 +33,14 @@ export function Breadcrumb({
       {...rest}
     >
       <ol className={styles.list}>
-        {visible.map((item, index) => {
-          const current = index === visible.length - 1;
-          const isLast = index === visible.length - 1;
+        {items.map((item, index) => {
+          const current = index === items.length - 1;
+          const hiddenMiddle = collapsed && index > 0 && !current;
           return (
-            <li key={`${item.label}-${index}`} className={styles.item}>
+            <li
+              key={`${item.label}-${index}`}
+              className={cx(styles.item, hiddenMiddle && styles.visuallyHidden)}
+            >
               {index > 0 ? (
                 <span className={styles.separator} aria-hidden="true">
                   /
@@ -58,7 +58,7 @@ export function Breadcrumb({
                   {item.label}
                 </a>
               )}
-              {collapsed && index === 0 && !isLast ? (
+              {collapsed && index === 0 ? (
                 <>
                   <span className={styles.separator} aria-hidden="true">
                     /

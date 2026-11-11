@@ -25,11 +25,33 @@ describe("Tabs", () => {
   it("renders one selected tab and its panel", () => {
     render(<TabsHarness />);
 
-    expect(screen.getByRole("tab", { name: "Due" })).toHaveAttribute(
-      "aria-selected",
-      "true",
+    const due = screen.getByRole("tab", { name: "Due" });
+    const panel = screen.getByRole("tabpanel");
+    expect(due).toHaveAttribute("aria-selected", "true");
+    expect(due).toHaveAttribute("aria-controls", panel.id);
+    expect(screen.getByRole("tab", { name: "New" })).not.toHaveAttribute(
+      "aria-controls",
     );
-    expect(screen.getByRole("tabpanel")).toHaveTextContent("142 cards due");
+    expect(panel).toHaveTextContent("142 cards due");
+  });
+
+  it("keeps the tablist reachable when no tab is selected", () => {
+    render(
+      <Tabs
+        value="none"
+        label="Empty selection"
+        items={[
+          { id: "due", label: "Due" },
+          { id: "new", label: "New" },
+        ]}
+      />,
+    );
+
+    const tabs = screen.getAllByRole("tab");
+    expect(tabs[0]).toHaveAttribute("tabindex", "0");
+    expect(tabs[1]).toHaveAttribute("tabindex", "-1");
+    expect(tabs[0]).not.toHaveAttribute("aria-controls");
+    expect(screen.queryByRole("tabpanel")).not.toBeInTheDocument();
   });
 
   it("moves selection with arrow keys and Home and End", async () => {

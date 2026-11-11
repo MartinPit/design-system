@@ -1,10 +1,11 @@
 import {
+  forwardRef,
   useId,
-  useRef,
-  type KeyboardEvent,
+  type HTMLAttributes,
   type ReactNode,
 } from "react";
 import { cx } from "../../lib/cx";
+import { useRovingFocus } from "../../lib/useRovingFocus";
 import { useControllableState } from "../../hooks/useControllableState";
 import styles from "./Tabs.module.css";
 
@@ -17,68 +18,55 @@ export interface TabItem {
 
 export type TabsVariant = "underline" | "pill";
 
-export interface TabsProps {
+export interface TabsProps
+  extends Omit<
+    HTMLAttributes<HTMLDivElement>,
+    "onChange" | "value" | "defaultValue" | "children"
+  > {
   items: TabItem[];
   value?: string;
   defaultValue?: string;
   onChange?: (id: string) => void;
   variant?: TabsVariant;
   label?: string;
-  className?: string;
   /** Forces a visual state for the documentation state grid. */
   "data-state"?: "hover" | "focus";
 }
 
-export function Tabs({
-  items,
-  value,
-  defaultValue,
-  onChange,
-  variant = "underline",
-  label = "Sections",
-  className,
-  "data-state": dataState,
-}: TabsProps) {
+export const Tabs = forwardRef<HTMLDivElement, TabsProps>(function Tabs(
+  {
+    items,
+    value,
+    defaultValue,
+    onChange,
+    variant = "underline",
+    label = "Sections",
+    className,
+    "data-state": dataState,
+    ...rest
+  },
+  ref,
+) {
   const baseId = useId();
   const [current, setCurrent] = useControllableState<string>({
     value,
     defaultValue: defaultValue ?? items[0]?.id ?? "",
     onChange,
   });
-  const tabs = useRef<Record<string, HTMLButtonElement | null>>({});
   const selected = items.find((item) => item.id === current && !item.disabled);
-
-  function move(from: string, direction: 1 | -1 | "first" | "last") {
-    const enabled = items.filter((item) => !item.disabled);
-    if (enabled.length === 0) return;
-    const index = enabled.findIndex((item) => item.id === from);
-    let next = enabled[0];
-    if (direction === "last") next = enabled[enabled.length - 1];
-    else if (direction !== "first") {
-      next = enabled[(index + direction + enabled.length) % enabled.length];
-    }
-    setCurrent(next.id);
-    tabs.current[next.id]?.focus();
-  }
-
-  function handleKeyDown(event: KeyboardEvent<HTMLButtonElement>, from: string) {
-    if (event.key === "ArrowRight" || event.key === "ArrowDown") {
-      event.preventDefault();
-      move(from, 1);
-    } else if (event.key === "ArrowLeft" || event.key === "ArrowUp") {
-      event.preventDefault();
-      move(from, -1);
-    } else if (event.key === "Home") {
-      event.preventDefault();
-      move(from, "first");
-    } else if (event.key === "End") {
-      event.preventDefault();
-      move(from, "last");
-    }
-  }
+  const activeTab = selected ?? items.find((item) => !item.disabled);
+  const roving = useRovingFocus<HTMLButtonElement>({
+    ids: items.map((item) => item.id),
+    isDisabled: (id) => Boolean(items.find((item) => item.id === id)?.disabled),
+    onMove: setCurrent,
+  });
 
   return (
-    <div className={cx(styles.wrap, className)}>
+    <div
+      ref={ref}
+      className={cx(styles.wrap, className)}
+      {...rest}
+    >
       <div
         role="tablist"
         aria-label={label}
@@ -91,21 +79,21 @@ export function Tabs({
           return (
             <button
               key={item.id}
-              ref={(node) => {
-                tabs.current[item.id] = node;
-              }}
+              ref={roving.getRef(item.id)}
               id={`${baseId}-tab-${item.id}`}
               type="button"
               role="tab"
               aria-selected={isSelected}
               aria-controls={
-                hasPanel ? `${baseId}-panel-${item.id}` : undefined
+                isSelected && hasPanel
+                  ? `${baseId}-panel-${item.id}`
+                  : undefined
               }
-              tabIndex={isSelected ? 0 : -1}
+              tabIndex={item.id === activeTab?.id ? 0 : -1}
               disabled={item.disabled}
               className={styles.tab}
               onClick={() => setCurrent(item.id)}
-              onKeyDown={(event) => handleKeyDown(event, item.id)}
+              onKeyDown={(event) => roving.handleKeyDown(event, item.id)}
             >
               {item.label}
             </button>
@@ -125,4 +113,4 @@ export function Tabs({
       ) : null}
     </div>
   );
-}
+});

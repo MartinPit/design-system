@@ -4,7 +4,7 @@ import { spaceScale } from "../tokenData";
 import { Page, PageHead, Section } from "../ui";
 import styles from "./pages.module.css";
 
-const insetTokens = spaceScale.slice(1, 7);
+const insetTokens = spaceScale.slice(1, 5);
 
 export function SpacePage() {
   const [inset, setInset] = useState("--space-5");

@@ -1,3 +1,4 @@
+import { createRef } from "react";
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { describe, expect, it, vi } from "vitest";
@@ -97,6 +98,27 @@ describe("Switch", () => {
 
     await userEvent.click(control);
 
+    expect(control).toHaveAttribute("aria-checked", "true");
+  });
+
+  it("forwards ref, native attributes and composes onClick", async () => {
+    const ref = createRef<HTMLButtonElement>();
+    const onClick = vi.fn();
+    render(
+      <Switch
+        ref={ref}
+        label="Daily reminders"
+        data-testid="reminders"
+        onClick={onClick}
+      />,
+    );
+
+    const control = screen.getByRole("switch", { name: "Daily reminders" });
+    expect(ref.current).toBe(control);
+    expect(control).toHaveAttribute("data-testid", "reminders");
+
+    await userEvent.click(control);
+    expect(onClick).toHaveBeenCalledTimes(1);
     expect(control).toHaveAttribute("aria-checked", "true");
   });
 });

@@ -118,6 +118,7 @@
   /* Elevation — print offset, never blur */
   --shadow-1: 4px 4px 0 rgb(74 13 99 / 0.1);
   --shadow-2: 8px 8px 0 rgb(74 13 99 / 0.14);
+  --overlay-scrim: rgb(58 10 78 / 0.45);
 
   /* Motion */
   --dur-1: 120ms;

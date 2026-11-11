@@ -21,10 +21,10 @@
 
 .heroTitle {
   margin: 0;
-  font-size: clamp(4rem, 9vw, 7rem);
+  font-size: var(--text-hero);
   font-weight: 700;
   letter-spacing: var(--tracking-display);
-  line-height: 0.9;
+  line-height: var(--leading-tight);
   color: var(--ink-900);
 }
 
@@ -1174,10 +1174,6 @@
 }
 
 @media (max-width: 767px) {
-  .heroTitle {
-    font-size: clamp(3.25rem, 16vw, 4.5rem);
-  }
-
   .faceRow,
   .typeRow {
     grid-template-columns: 1fr;

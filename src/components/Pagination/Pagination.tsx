@@ -1,4 +1,4 @@
-import type { HTMLAttributes } from "react";
+import { forwardRef, type HTMLAttributes } from "react";
 import { cx } from "../../lib/cx";
 import { ArrowLeft, ChevronRight } from "../../icons";
 import styles from "./Pagination.module.css";
@@ -32,84 +32,90 @@ function pageEntries(page: number, pageCount: number): Array<number | "gap"> {
   return entries;
 }
 
-export function Pagination({
-  page,
-  pageCount,
-  onPageChange,
-  variant = "numbered",
-  size = "md",
-  label = "Pagination",
-  className,
-  "data-state": dataState,
-  ...rest
-}: PaginationProps) {
-  const pages = pageEntries(page, pageCount);
-  const canGoBack = page > 1;
-  const canGoForward = page < pageCount;
+export const Pagination = forwardRef<HTMLElement, PaginationProps>(
+  function Pagination(
+    {
+      page,
+      pageCount,
+      onPageChange,
+      variant = "numbered",
+      size = "md",
+      label = "Pagination",
+      className,
+      "data-state": dataState,
+      ...rest
+    },
+    ref,
+  ) {
+    const pages = pageEntries(page, pageCount);
+    const canGoBack = page > 1;
+    const canGoForward = page < pageCount;
 
-  function go(next: number) {
-    if (next < 1 || next > pageCount || next === page) return;
-    onPageChange?.(next);
-  }
+    function go(next: number) {
+      if (next < 1 || next > pageCount || next === page) return;
+      onPageChange?.(next);
+    }
 
-  return (
-    <nav
-      aria-label={label}
-      className={cx(styles.root, styles[size], className)}
-      data-state={dataState}
-      {...rest}
-    >
-      <ul className={styles.list}>
-        <li>
-          <button
-            type="button"
-            className={cx(styles.step, styles.arrow)}
-            aria-label="Previous page"
-            disabled={!canGoBack}
-            onClick={() => go(page - 1)}
-          >
-            <ArrowLeft aria-hidden="true" />
-          </button>
-        </li>
-
-        {variant === "numbered" ? (
-          pages.map((entry, index) =>
-            entry === "gap" ? (
-              <li key={`gap-${index}`} className={styles.gap} aria-hidden="true">
-                …
-              </li>
-            ) : (
-              <li key={entry}>
-                <button
-                  type="button"
-                  className={cx(styles.step, entry === page && styles.current)}
-                  aria-label={`Page ${entry}`}
-                  aria-current={entry === page ? "page" : undefined}
-                  onClick={() => go(entry)}
-                >
-                  {entry}
-                </button>
-              </li>
-            ),
-          )
-        ) : (
-          <li className={styles.summary} aria-live="polite">
-            Page {page} of {pageCount}
+    return (
+      <nav
+        ref={ref}
+        aria-label={label}
+        className={cx(styles.root, styles[size], className)}
+        data-state={dataState}
+        {...rest}
+      >
+        <ul className={styles.list}>
+          <li>
+            <button
+              type="button"
+              className={cx(styles.step, styles.arrow)}
+              aria-label="Previous page"
+              disabled={!canGoBack}
+              onClick={() => go(page - 1)}
+            >
+              <ArrowLeft aria-hidden="true" />
+            </button>
           </li>
-        )}
 
-        <li>
-          <button
-            type="button"
-            className={cx(styles.step, styles.arrow)}
-            aria-label="Next page"
-            disabled={!canGoForward}
-            onClick={() => go(page + 1)}
-          >
-            <ChevronRight aria-hidden="true" />
-          </button>
-        </li>
-      </ul>
-    </nav>
-  );
-}
+          {variant === "numbered" ? (
+            pages.map((entry, index) =>
+              entry === "gap" ? (
+                <li key={`gap-${index}`} className={styles.gap} aria-hidden="true">
+                  …
+                </li>
+              ) : (
+                <li key={entry}>
+                  <button
+                    type="button"
+                    className={cx(styles.step, entry === page && styles.current)}
+                    aria-label={`Page ${entry}`}
+                    aria-current={entry === page ? "page" : undefined}
+                    onClick={() => go(entry)}
+                  >
+                    {entry}
+                  </button>
+                </li>
+              ),
+            )
+          ) : (
+            <li className={styles.summary} aria-live="polite">
+              Page {page} of {pageCount}
+            </li>
+          )}
+
+          <li>
+            <button
+              type="button"
+              className={cx(styles.step, styles.arrow)}
+              aria-label="Next page"
+              disabled={!canGoForward}
+              onClick={() => go(page + 1)}
+            >
+              <ChevronRight aria-hidden="true" />
+            </button>
+          </li>
+        </ul>
+      </nav>
+    );
+  },
+);

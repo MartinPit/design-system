@@ -62,7 +62,7 @@ export const tokenGroups: TokenGroup[] = [
   {
     id: "ink",
     title: "Ink",
-    note: "Purple carries all text. Five stops, one disabled exemption.",
+    note: "Purple carries all text, plus the modal scrim.",
     tokens: [
       { name: "--ink-900", label: "Heavy", role: "Display headings" },
       { name: "--ink-700", label: "Primary", role: "Body text, keylines" },
@@ -73,6 +73,12 @@ export const tokenGroups: TokenGroup[] = [
         label: "Disabled",
         role: "Disabled text (exempt)",
         exempt: true,
+      },
+      {
+        name: "--overlay-scrim",
+        label: "Scrim",
+        role: "Modal overlay",
+        fillOnly: true,
       },
     ],
   },
