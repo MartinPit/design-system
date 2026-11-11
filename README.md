@@ -1,30 +1,30 @@
-# Design system explorations
+# Arcana
 
-Two candidate identities for one flashcards app, built from two reference cards. Each system lives on its own branch, read from its own seed card, and ships a full component library with a documentation page.
+A design system for a flashcards app, built from **Card A** — the cream archive card with one warm gradient form, a purple monogram, seals, and a ruled label strip.
 
-| System | Branch | Seed | Character |
-|---|---|---|---|
-| **Arcana** | `ds/arcana` | Card A | Cream, warm gradient, archive grammar, Swiss editorial |
-| **Tidal** | `ds/tidal` | Card B | Iridescent ground, seigaiha field, glass depth, display serif |
+## Character
 
-Open `index.html` for the design index. It lists both systems, how to run them, and the placeholders for future prototypes.
+Cream and ink, Swiss/editorial, flat print. One gradient event per viewport, never behind type. The archive grammar — keylines, seals, label strips, monogram tiles — carries the identity; colour is spent in one place.
 
-## Run a system
+## Run
 
 ```bash
-git switch ds/arcana && npm install && npm run dev
-git switch ds/tidal  && npm install && npm run dev
+npm install
+npm run dev       # documentation page
+npm run verify    # lint + typecheck + tests + production build
 ```
 
-Each branch has its own README and its own `npm run verify`.
+## Inside
 
-## The plan
+- `src/styles/tokens.css` — single source of truth for colour, type, shape, space, motion.
+- `src/components/` — the 27-component library, CSS Modules per component.
+- `src/docs/` — the documentation page and the registry that drives its nav.
+- 27 components in five groups: Actions, Forms, Navigation, Display, Overlay.
 
-The wayfinder map and its tickets live in [`wayfinder/`](wayfinder/map.md). The canonical transcription of the two cards is [`wayfinder/references/cards.md`](wayfinder/references/cards.md) — the original image exists only in the originating chat.
+## Quality bar
 
-## Notes
+WCAG 2.2 AA, visible focus, full keyboard operation, responsive 360–1440, `prefers-reduced-motion`. Deliberate deviations from the card are listed on the documentation page's Accessibility section: lavender stays decorative, amber/orange/magenta text uses text-safe variants, seals and redaction bars are `aria-hidden`, the gradient never carries type.
 
-- One app, two identities. Free rein per system; the shared contract is tokens + 27 components with states + a docs page + WCAG 2.2 AA.
-- Docs-only: no app screens or clickable prototype. Future prototypes get a placeholder on the index.
-- Not hosted. Each branch runs locally.
-- Neither design branch merges into `main`.
+## Plan
+
+Seed, decisions, and delivery contract: [`wayfinder/tickets/04-arcana-visual-language.md`](../wayfinder/tickets/04-arcana-visual-language.md) on `main` (the tracker is not copied onto this branch).
