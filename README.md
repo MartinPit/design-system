@@ -1,5 +1,7 @@
 # Tidal
 
+**Live:** https://martinpit.github.io/design-system/tidal/
+
 A design system for a flashcards app, built from **Card B** — the iridescent membership token with a seigaiha field, a Didone wordmark, and a glass orb.
 
 ## Character
