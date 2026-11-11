@@ -26,6 +26,7 @@ A branch reaches the end when it holds a Vite + React + TypeScript project with 
 - **Skills:** grilling + domain-modeling for HITL tickets, research for AFK tickets, prototype for shells and signature surfaces.
 - **Branches:** `ds/arcana`, `ds/tidal`, throwaway `research/*`. The tracker stays on `main`.
 - **Delivered 2026-11-11.** All 14 tickets closed. Arcana at `4a6a1d4`, Tidal at `75c3725`; `main` carries the design index. Implementer worktrees removed; `research/*` branches remain as context pointers only.
+- **Published 2026-11-11** (requested follow-up, beyond the map): both systems are live on GitHub Pages from a single `gh-pages` branch — `/arcana/`, `/tidal/`, index at the root. The design branches remain unmerged.
 
 ## Decisions so far
 
@@ -53,7 +54,6 @@ None. The route is walked; every ticket is closed. Anything below is a deliberat
 ## Out of scope
 
 - **App screens and clickable prototypes** in either system — the docs page is the deliverable (Q8). Future prototypes appear only as linktree placeholders, built later.
-- **Deploying the branches** — no hosting; the linktree on `main` is the index (Q11).
 - **A shared component package or monorepo** — free rein per system (Q9); the two branches stay independent.
 - **Merging either design branch into `main`.**
 - **A second light/dark mode per system** — each ships its primary mode (Arcana light, Tidal dark) with reduced-motion/contrast/transparency variants, not a full second theme.

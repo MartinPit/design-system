@@ -65,6 +65,20 @@
   .character { margin: 0; color: var(--muted); font-size: .94rem; }
   .meta { display: flex; flex-wrap: wrap; gap: .4rem .9rem; font: .75rem/1.4 var(--mono); color: var(--muted); }
   .meta strong { color: var(--fg); font-weight: 600; }
+  .live {
+    align-self: start;
+    display: inline-flex;
+    align-items: center;
+    gap: .35rem;
+    margin-top: .45rem;
+    padding: .45rem .75rem;
+    border: 1px solid var(--fg);
+    color: var(--fg);
+    text-decoration: none;
+    font-size: .82rem;
+    font-weight: 600;
+  }
+  .live:hover { background: var(--fg); color: var(--bg); }
   pre { margin: .35rem 0 0; padding: .55rem .7rem; background: var(--code); overflow-x: auto; font: .78rem/1.5 var(--mono); }
   .note { margin-top: 2.5rem; padding-top: 1.25rem; border-top: 1px solid var(--line); display: grid; gap: .75rem; }
   .note h2 { margin: 0; font-size: .95rem; }
@@ -89,6 +103,7 @@
         <h2 class="name">Arcana</h2>
         <p class="character">Cream and ink, one warm gradient, the grammar of an archive card. Swiss, flat, institutional.</p>
         <p class="meta"><span><strong>Branch</strong> ds/arcana</span><span><strong>Seed</strong> Card A</span><span><strong>Type</strong> grotesque + mono</span><span><strong>Components</strong> 27</span></p>
+        <a class="live" href="https://martinpit.github.io/design-system/arcana/">Open live <span aria-hidden="true">→</span></a>
         <pre id="arcana">git switch ds/arcana
 npm install
 npm run dev</pre>
@@ -100,6 +115,7 @@ npm run dev</pre>
         <h2 class="name">Tidal</h2>
         <p class="character">Iridescent indigo to mint, a seigaiha field, glass depth, a Didone wordmark. Aquatic and ornamental.</p>
         <p class="meta"><span><strong>Branch</strong> ds/tidal</span><span><strong>Seed</strong> Card B</span><span><strong>Type</strong> Didone + serif</span><span><strong>Components</strong> 27</span></p>
+        <a class="live" href="https://martinpit.github.io/design-system/tidal/">Open live <span aria-hidden="true">→</span></a>
         <pre id="tidal">git switch ds/tidal
 npm install
 npm run dev</pre>
@@ -119,7 +135,7 @@ npm run dev</pre>
 
   <section class="note" aria-labelledby="how">
     <h2 id="how">How to read a system</h2>
-    <p>Switch to the branch, run the dev server, and open the single documentation page. The sidebar holds Overview, seven Foundations pages, 27 components in five groups, and the accessibility note. Branches are not hosted and never merge.</p>
+    <p>Each system has a live page on GitHub Pages, or can be run locally from its branch. The sidebar holds Overview, seven Foundations pages, 27 components in five groups, and the accessibility note. The branches are independent and never merge.</p>
   </section>
 </main>
 <footer class="wrap">

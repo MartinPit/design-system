@@ -11,6 +11,9 @@ Open `index.html` for the design index. It lists both systems, how to run them, 
 
 ## Run a system
 
+- **Live:** [Arcana](https://martinpit.github.io/design-system/arcana/) · [Tidal](https://martinpit.github.io/design-system/tidal/)
+- **Locally:**
+
 ```bash
 git switch ds/arcana && npm install && npm run dev
 git switch ds/tidal  && npm install && npm run dev
@@ -26,5 +29,5 @@ The wayfinder map and its tickets live in [`wayfinder/`](wayfinder/map.md). The 
 
 - One app, two identities. Free rein per system; the shared contract is tokens + 27 components with states + a docs page + WCAG 2.2 AA.
 - Docs-only: no app screens or clickable prototype. Future prototypes get a placeholder on the index.
-- Not hosted. Each branch runs locally.
+- Hosted on GitHub Pages from a single `gh-pages` branch that carries both builds; the design branches themselves never merge.
 - Neither design branch merges into `main`.
