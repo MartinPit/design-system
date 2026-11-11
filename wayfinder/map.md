@@ -37,6 +37,9 @@ A branch reaches the end when it holds a Vite + React + TypeScript project with 
 - [Decide the Tidal visual language](tickets/05-tidal-visual-language.md): an iridescent 6-stop ground with an abyss text zone, a masked seigaiha at 3.5rem, four glass levels, and a Didone display face.
 - [Decide the documentation page architecture](tickets/06-docs-page-architecture.md): hash-routed docs shell, seven foundation pages, 27 component pages on one contract, responsive at 360–1440.
 - [Decide the code architecture for each branch](tickets/07-code-architecture.md): Vite + React 19 + TS strict, CSS Modules over a tokens.css source of truth, a registry-driven docs app, Vitest floor.
+- [Scaffold the repo, both branches, and the linktree](tickets/10-scaffold-repo-and-branches.md): main index plus two standalone Vite projects, both green on `npm run verify`, with the ESLint 9 and Fragment Mono gotchas recorded.
+- [Prototype the Arcana docs shell and specimen layout](tickets/08-prototype-arcana-docs-shell.md): folded into the Arcana build; reviewed as the finished docs page.
+- [Prototype the Tidal docs shell and specimen layout](tickets/09-prototype-tidal-docs-shell.md): folded into the Tidal build; reviewed as the finished docs page.
 
 ## Not yet specified
 

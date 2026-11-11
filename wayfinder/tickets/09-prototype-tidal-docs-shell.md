@@ -2,11 +2,11 @@
 id: "09"
 title: Prototype the Tidal docs shell and specimen layout
 labels: [wayfinder:prototype]
-status: open
-assignee: null
+status: closed
+assignee: thinker (implementation session)
 blocked-by: ["05", "06"]
 created: 2026-11-11
-closed: null
+closed: 2026-11-11
 ---
 
 ## Question
@@ -27,3 +27,7 @@ Do not build all 25 components. The question is whether the surface, the type, a
 ## Deliverable
 
 A runnable prototype and a short note in the resolution: what held, what broke, what the build must change. Link assets, do not paste them.
+
+## Resolution — 2026-11-11
+
+Not run as a separate HITL artifact. The user invoked `implement-spec` for the whole map, so the shell was built directly inside ["Build the Tidal system and its documentation page"](12-build-tidal-system.md) and reviewed as the finished docs page. The visual-language spec (`05`) and docs architecture (`06`) carry the decisions that the prototype would have tested. If the shell needs a reaction loop, reopen with the built page as the artifact.

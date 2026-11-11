@@ -3,7 +3,7 @@ id: "12"
 title: Build the Tidal system and its documentation page
 labels: [wayfinder:task]
 status: open
-assignee: null
+assignee: thinker (implementer subagent, phase A)
 blocked-by: ["03", "07", "09", "10"]
 created: 2026-11-11
 closed: null

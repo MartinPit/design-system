@@ -2,11 +2,11 @@
 id: "08"
 title: Prototype the Arcana docs shell and specimen layout
 labels: [wayfinder:prototype]
-status: open
-assignee: null
+status: closed
+assignee: thinker (implementation session)
 blocked-by: ["04", "06"]
 created: 2026-11-11
-closed: null
+closed: 2026-11-11
 ---
 
 ## Question
@@ -27,3 +27,7 @@ Do not build all 25 components. The question is whether the shell, the type, and
 ## Deliverable
 
 A runnable prototype and a short note in the ticket's resolution: what held, what broke, what the build must change. Screenshots or a captured page welcome, linked, not pasted.
+
+## Resolution — 2026-11-11
+
+Not run as a separate HITL artifact. The user invoked `implement-spec` for the whole map, so the shell was built directly inside ["Build the Arcana system and its documentation page"](11-build-arcana-system.md) and reviewed as the finished docs page. The visual-language spec (`04`) and docs architecture (`06`) carry the decisions that the prototype would have tested. If the shell needs a reaction loop, reopen this ticket with the built page as the artifact.

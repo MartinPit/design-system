@@ -3,7 +3,7 @@ id: "11"
 title: Build the Arcana system and its documentation page
 labels: [wayfinder:task]
 status: open
-assignee: null
+assignee: thinker (implementer subagent, phase A)
 blocked-by: ["03", "07", "08", "10"]
 created: 2026-11-11
 closed: null
