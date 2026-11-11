@@ -32,9 +32,9 @@
 .selected {
   border-color: var(--mint);
   background:
-    linear-gradient(rgb(169 240 216 / 0.06), rgb(169 240 216 / 0.06)),
+    linear-gradient(var(--selected-wash), var(--selected-wash)),
     var(--indigo);
-  box-shadow: inset 0 0 0 1px rgb(169 240 216 / 0.35);
+  box-shadow: inset 0 0 0 1px var(--selected-edge);
 }
 
 .isInteractive:hover,

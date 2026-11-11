@@ -22,7 +22,7 @@
 .link {
   color: var(--color-text-muted);
   text-decoration: none;
-  border-radius: 3px;
+  border-radius: var(--radius-1);
   padding: 0.1rem 0.15rem;
 }
 

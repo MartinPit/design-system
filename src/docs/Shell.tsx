@@ -6,7 +6,7 @@ import { foundationPages } from "./routes";
 import type { DocsRoute } from "./routes";
 import { componentGroups } from "./registry";
 import { Orb } from "./Orb";
-import pattern from "./pattern.module.css";
+import pattern from "../styles/pattern.module.css";
 import styles from "./Shell.module.css";
 
 function isActive(route: DocsRoute, kind: DocsRoute["kind"], slug?: string) {
@@ -29,7 +29,14 @@ export function Shell({
 
   return (
     <div className={styles.shell}>
-      <a className="skip-link" href="#main-content">
+      <a
+        className="skip-link"
+        href="#main-content"
+        onClick={(event) => {
+          event.preventDefault();
+          document.getElementById("main-content")?.focus();
+        }}
+      >
         Skip to content
       </a>
 

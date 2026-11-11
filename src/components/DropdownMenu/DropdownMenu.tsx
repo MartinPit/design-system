@@ -2,6 +2,7 @@ import { useCallback, useEffect, useId, useRef, useState } from "react";
 import type { KeyboardEvent } from "react";
 import { IconButton } from "../IconButton";
 import { cx } from "../cx";
+import { useFocusWalk } from "../useFocusWalk";
 import styles from "./DropdownMenu.module.css";
 
 export interface DropdownMenuItem {
@@ -45,6 +46,7 @@ export function DropdownMenu({
   const itemRefs = useRef<Array<HTMLButtonElement | null>>([]);
   const wasOpen = useRef(defaultOpen);
   const firstEnabled = items.findIndex((item) => !item.disabled);
+  const walk = useFocusWalk(items, itemRefs);
 
   const setOpen = useCallback(
     (next: boolean) => {
@@ -84,23 +86,6 @@ export function DropdownMenu({
     return () => document.removeEventListener("pointerdown", handlePointerDown);
   }, [isOpen, items, open, onOpenChange, setOpen]);
 
-  function moveFocus(from: number, direction: 1 | -1) {
-    const enabled = items
-      .map((item, index) => ({ item, index }))
-      .filter(({ item }) => !item.disabled);
-    if (enabled.length === 0) return;
-    const current = enabled.findIndex(({ index }) => index === from);
-    const next =
-      current === -1
-        ? direction === 1
-          ? enabled[0]
-          : enabled[enabled.length - 1]
-        : enabled[
-            (current + direction + enabled.length) % enabled.length
-          ];
-    if (next) itemRefs.current[next.index]?.focus();
-  }
-
   function handleMenuKeyDown(event: KeyboardEvent<HTMLDivElement>) {
     const activeIndex = itemRefs.current.findIndex(
       (item) => item === document.activeElement,
@@ -109,28 +94,20 @@ export function DropdownMenu({
     switch (event.key) {
       case "ArrowDown":
         event.preventDefault();
-        moveFocus(activeIndex, 1);
+        walk.moveFocus(activeIndex, 1);
         break;
       case "ArrowUp":
         event.preventDefault();
-        moveFocus(activeIndex, -1);
+        walk.moveFocus(activeIndex, -1);
         break;
-      case "Home": {
+      case "Home":
         event.preventDefault();
-        const first = items.findIndex((item) => !item.disabled);
-        if (first >= 0) itemRefs.current[first]?.focus();
+        walk.focusFirst();
         break;
-      }
-      case "End": {
+      case "End":
         event.preventDefault();
-        for (let index = items.length - 1; index >= 0; index -= 1) {
-          if (!items[index]?.disabled) {
-            itemRefs.current[index]?.focus();
-            break;
-          }
-        }
+        walk.focusLast();
         break;
-      }
       case "Escape":
         event.preventDefault();
         closeAndRestore();

@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
 import { Icon } from "../../icons/Icon";
+import pattern from "../../styles/pattern.module.css";
 import { cx } from "../cx";
 import styles from "./EmptyState.module.css";
 
@@ -19,7 +20,7 @@ export function EmptyState({
   return (
     <div className={cx(styles.root, className)}>
       <span className={styles.mark} aria-hidden="true">
-        <span className={styles.pattern} />
+        <span className={pattern.tile} />
         <Icon name="sparkle" size={22} />
       </span>
       <h3 className={styles.title}>{title}</h3>

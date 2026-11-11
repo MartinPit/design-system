@@ -4,8 +4,9 @@ import {
   useRef,
   useState,
 } from "react";
-import type { KeyboardEvent, ReactNode } from "react";
+import type { HTMLAttributes, KeyboardEvent, ReactNode } from "react";
 import { cx } from "../cx";
+import { useFocusWalk } from "../useFocusWalk";
 import styles from "./Tabs.module.css";
 
 export type TabsVariant = "underline" | "pill";
@@ -17,13 +18,13 @@ export interface TabItem {
   disabled?: boolean;
 }
 
-export interface TabsProps {
+export interface TabsProps
+  extends Omit<HTMLAttributes<HTMLDivElement>, "onChange"> {
   tabs: TabItem[];
   value?: string;
   defaultValue?: string;
   onValueChange?: (id: string) => void;
   variant?: TabsVariant;
-  className?: string;
   label?: string;
   /** Docs-only: forces one contact state into a state grid. */
   preview?: "hover" | "focus";
@@ -39,6 +40,7 @@ export const Tabs = forwardRef<HTMLDivElement, TabsProps>(function Tabs(
     className,
     label,
     preview,
+    ...rest
   },
   ref,
 ) {
@@ -50,6 +52,7 @@ export const Tabs = forwardRef<HTMLDivElement, TabsProps>(function Tabs(
   );
   const selected = value ?? internal;
   const tabRefs = useRef<Array<HTMLButtonElement | null>>([]);
+  const walk = useFocusWalk(tabs, tabRefs);
 
   const selectedIndex = tabs.findIndex((tab) => tab.id === selected);
   const activeTab =
@@ -60,46 +63,31 @@ export const Tabs = forwardRef<HTMLDivElement, TabsProps>(function Tabs(
     onValueChange?.(id);
   }
 
-  function moveFocus(from: number, direction: 1 | -1) {
-    if (tabs.length === 0) return;
-    let index = from;
-    for (let step = 0; step < tabs.length; step += 1) {
-      index = (index + direction + tabs.length) % tabs.length;
-      if (!tabs[index]?.disabled) break;
-    }
-    const next = tabs[index];
-    if (!next || next.disabled) return;
-    select(next.id);
-    tabRefs.current[index]?.focus();
+  function moveSelection(from: number, direction: 1 | -1) {
+    const index = walk.moveFocus(from, direction);
+    if (index !== null) select(tabs[index]!.id);
   }
 
   function handleKeyDown(event: KeyboardEvent<HTMLButtonElement>, index: number) {
     switch (event.key) {
       case "ArrowRight":
         event.preventDefault();
-        moveFocus(index, 1);
+        moveSelection(index, 1);
         break;
       case "ArrowLeft":
         event.preventDefault();
-        moveFocus(index, -1);
+        moveSelection(index, -1);
         break;
       case "Home": {
         event.preventDefault();
-        const first = tabs.findIndex((tab) => !tab.disabled);
-        if (first >= 0) {
-          select(tabs[first]!.id);
-          tabRefs.current[first]?.focus();
-        }
+        const first = walk.focusFirst();
+        if (first !== null) select(tabs[first]!.id);
         break;
       }
       case "End": {
         event.preventDefault();
-        const last = [...tabs].reverse().findIndex((tab) => !tab.disabled);
-        if (last >= 0) {
-          const target = tabs.length - 1 - last;
-          select(tabs[target]!.id);
-          tabRefs.current[target]?.focus();
-        }
+        const last = walk.focusLast();
+        if (last !== null) select(tabs[last]!.id);
         break;
       }
       default:
@@ -108,7 +96,7 @@ export const Tabs = forwardRef<HTMLDivElement, TabsProps>(function Tabs(
   }
 
   return (
-    <div ref={ref} className={cx(styles.root, className)}>
+    <div ref={ref} className={cx(styles.root, className)} {...rest}>
       <div
         role="tablist"
         aria-label={label}

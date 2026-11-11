@@ -75,4 +75,14 @@ describe("docs routing", () => {
       expect(toggle).toHaveAttribute("aria-expanded", "false"),
     );
   });
+
+  it("moves focus with the skip link without changing the route", async () => {
+    const user = userEvent.setup();
+    renderAt("#/components/button");
+
+    await user.click(screen.getByRole("link", { name: "Skip to content" }));
+
+    expect(window.location.hash).toBe("#/components/button");
+    expect(screen.getByRole("main")).toHaveFocus();
+  });
 });

@@ -29,25 +29,25 @@
 }
 
 .accent {
-  border-color: rgb(169 240 216 / 0.4);
+  border-color: var(--accent-edge);
   background: var(--mint);
   color: var(--ink);
 }
 
 .success {
-  border-color: rgb(124 224 180 / 0.4);
-  background: rgb(124 224 180 / 0.12);
+  border-color: var(--success-edge);
+  background: var(--success-soft);
   color: var(--success);
 }
 
 .warning {
-  border-color: rgb(245 201 122 / 0.4);
-  background: rgb(245 201 122 / 0.12);
+  border-color: var(--warning-edge);
+  background: var(--warning-soft);
   color: var(--warning);
 }
 
 .danger {
-  border-color: rgb(255 154 168 / 0.4);
-  background: rgb(255 154 168 / 0.12);
+  border-color: var(--danger-edge);
+  background: var(--danger-soft);
   color: var(--danger);
 }

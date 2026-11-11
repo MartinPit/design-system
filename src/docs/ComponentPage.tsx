@@ -1,6 +1,6 @@
 import { PageHeader, Section, PropsTable, DoDont, Note } from "./page";
 import { Stage } from "./specimen";
-import type { ComponentDoc, PropRow } from "./types";
+import type { ComponentDoc } from "./types";
 import styles from "./ComponentPage.module.css";
 
 export function ComponentPage({ doc }: { doc: ComponentDoc }) {
@@ -39,7 +39,7 @@ export function ComponentPage({ doc }: { doc: ComponentDoc }) {
       </Section>
 
       <Section title="Props" lead="The public surface. Native attributes pass through.">
-        <PropsTable rows={doc.props as PropRow[]} />
+        <PropsTable rows={doc.props} />
       </Section>
 
       <Section title="Usage">

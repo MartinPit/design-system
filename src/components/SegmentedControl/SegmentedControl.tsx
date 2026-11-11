@@ -1,4 +1,5 @@
 import { forwardRef, useState } from "react";
+import type { HTMLAttributes } from "react";
 import { cx } from "../cx";
 import styles from "./SegmentedControl.module.css";
 
@@ -10,7 +11,8 @@ export interface SegmentOption {
   disabled?: boolean;
 }
 
-export interface SegmentedControlProps {
+export interface SegmentedControlProps
+  extends Omit<HTMLAttributes<HTMLDivElement>, "onChange"> {
   /** Names the group for assistive technology. */
   label?: string;
   options: SegmentOption[];
@@ -18,7 +20,6 @@ export interface SegmentedControlProps {
   defaultValue?: string;
   onValueChange?: (value: string) => void;
   size?: SegmentedControlSize;
-  className?: string;
   /** Docs-only: forces one contact state into a state grid. */
   preview?: "hover" | "focus";
 }
@@ -34,6 +35,7 @@ export const SegmentedControl = forwardRef<HTMLDivElement, SegmentedControlProps
       size = "md",
       className,
       preview,
+      ...rest
     },
     ref,
   ) {
@@ -53,6 +55,7 @@ export const SegmentedControl = forwardRef<HTMLDivElement, SegmentedControlProps
         role="group"
         aria-label={label}
         className={cx(styles.group, styles[size], className)}
+        {...rest}
       >
         {options.map((option, index) => {
           const isSelected = option.value === selected;

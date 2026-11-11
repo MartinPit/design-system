@@ -35,15 +35,15 @@
     to right,
     var(--mint) 0%,
     var(--cyan) var(--fill),
-    rgb(247 242 230 / 0.18) var(--fill),
-    rgb(247 242 230 / 0.18) 100%
+    var(--track-strong) var(--fill),
+    var(--track-strong) 100%
   );
 }
 
 .input::-moz-range-track {
   height: 0.35rem;
   border-radius: var(--radius-pill);
-  background: rgb(247 242 230 / 0.18);
+  background: var(--track-strong);
 }
 
 .input::-moz-range-progress {
@@ -60,7 +60,7 @@
   border: 2px solid var(--ink);
   border-radius: var(--radius-pill);
   background: var(--cream);
-  box-shadow: 0 2px 8px rgb(5 4 14 / 0.5);
+  box-shadow: var(--shadow-thumb);
   transition: transform var(--dur-1) var(--ease-standard);
 }
 

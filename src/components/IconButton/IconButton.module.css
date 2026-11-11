@@ -42,7 +42,8 @@
 
 .solid:hover:not(:disabled),
 .solid[data-preview="hover"]:not(:disabled) {
-  background: rgb(255 255 255 / 0.18);
+  border-color: var(--cream);
+  background: var(--glass-2);
 }
 
 .ghost:hover:not(:disabled),

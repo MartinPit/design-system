@@ -52,6 +52,18 @@ export function Variants() {
           defaultValue="new"
         />
       </Specimen>
+      <Specimen label="Four segments">
+        <SegmentedControl
+          label="Study scope"
+          options={[
+            { value: "due", label: "Due" },
+            { value: "new", label: "New" },
+            { value: "learning", label: "Learning" },
+            { value: "all", label: "All" },
+          ]}
+          defaultValue="learning"
+        />
+      </Specimen>
       <Specimen label="Small">
         <SegmentedControl
           label="Deck layout"

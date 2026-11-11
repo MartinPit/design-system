@@ -6,7 +6,7 @@
   padding-inline: var(--space-3);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-2);
-  background: rgb(8 6 15 / 0.34);
+  background: var(--surface-field);
   transition:
     border-color var(--dur-1) var(--ease-standard),
     background-color var(--dur-1) var(--ease-standard);
@@ -14,7 +14,7 @@
 
 .shell:focus-within {
   border-color: var(--cream);
-  background: rgb(8 6 15 / 0.5);
+  background: var(--surface-field-focus);
 }
 
 .shell:hover {
@@ -27,7 +27,7 @@
 
 .shell:has(.input[data-preview="focus"]) {
   border-color: var(--cream);
-  background: rgb(8 6 15 / 0.5);
+  background: var(--surface-field-focus);
   outline: 2px solid var(--color-focus);
   outline-offset: 3px;
   box-shadow: 0 0 0 5px var(--ink);
@@ -73,13 +73,13 @@
   padding: 0;
   border: 0;
   border-radius: var(--radius-pill);
-  background: var(--glass-2);
+  background: var(--glass-1);
   color: var(--cream);
   cursor: pointer;
 }
 
 .clear:hover {
-  background: rgb(255 255 255 / 0.2);
+  background: var(--glass-2);
 }
 
 .shortcut {

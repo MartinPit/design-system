@@ -1,5 +1,9 @@
 import { forwardRef, useId } from "react";
-import type { ChangeEvent, ReactNode } from "react";
+import type {
+  ChangeEvent,
+  FieldsetHTMLAttributes,
+  ReactNode,
+} from "react";
 import { cx } from "../cx";
 import fieldCss from "../field.module.css";
 import styles from "./RadioGroup.module.css";
@@ -13,7 +17,8 @@ export interface RadioOption {
   disabled?: boolean;
 }
 
-export interface RadioGroupProps {
+export interface RadioGroupProps
+  extends Omit<FieldsetHTMLAttributes<HTMLFieldSetElement>, "onChange" | "name"> {
   legend: string;
   name: string;
   options: RadioOption[];
@@ -25,8 +30,6 @@ export interface RadioGroupProps {
   error?: string;
   hint?: string;
   disabled?: boolean;
-  className?: string;
-  id?: string;
   /** Docs-only: forces one contact state into a state grid. */
   preview?: "hover" | "focus";
 }
@@ -48,6 +51,7 @@ export const RadioGroup = forwardRef<HTMLFieldSetElement, RadioGroupProps>(
       className,
       id,
       preview,
+      ...rest
     },
     ref,
   ) {
@@ -74,6 +78,7 @@ export const RadioGroup = forwardRef<HTMLFieldSetElement, RadioGroupProps>(
         aria-describedby={describedBy}
         aria-invalid={error ? true : undefined}
         disabled={disabled}
+        {...rest}
       >
         <legend className={cx(fieldCss.label, styles.legend)}>{legend}</legend>
         <div

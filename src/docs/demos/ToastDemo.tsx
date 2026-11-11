@@ -130,6 +130,22 @@ export function Variants() {
 export function States() {
   return (
     <div className={styles.stateStack}>
+      <State label="Entering">
+        <div style={{ width: "100%", display: "grid", gap: "var(--space-2)" }}>
+          <Toast
+            inline
+            open
+            duration={0}
+            title="Saved"
+            message="Card saved to Kanji N3."
+            onDismiss={() => undefined}
+          />
+          <p className={styles.inlineNote}>
+            Rises 8px and fades in over 240ms. Reduced motion removes the
+            entrance.
+          </p>
+        </div>
+      </State>
       <State label="Visible">
         <Toast
           inline

@@ -33,7 +33,7 @@ Unknown hashes fall back to Overview. The sidebar is fixed at ≥1024px, a colla
 
 ## Quality bar
 
-WCAG 2.2 AA, visible focus, full keyboard operation, responsive 360–1440, `prefers-reduced-motion`, `prefers-reduced-transparency`, `prefers-contrast`, `forced-colors`. The final pass ran axe-core against the built page across every route at 360, 768, 1024 and 1440 with zero violations, plus keyboard checks for Dialog, DropdownMenu, Tooltip, Tabs, Toast and Select. Deliberate deviations from the card are listed on the Accessibility page: cream replaces the black wordmark, type is zoned by luminance, glass stays at ≤12% white behind cream text, the pattern is decorative and hidden from assistive tech.
+WCAG 2.2 AA, visible focus, full keyboard operation, responsive 360–1440, `prefers-reduced-motion`, `prefers-reduced-transparency`, `prefers-contrast`, `forced-colors`. The final pass ran strict axe-core rules (WCAG 2.0/2.1/2.2 A and AA) against the built page across all 36 routes at 390 and 1440 with zero violations and zero page overflow, plus keyboard checks for Dialog, DropdownMenu, Tooltip, Tabs, Toast and Select. Deliberate deviations from the card are listed on the Accessibility page: cream replaces the black wordmark, type is zoned by luminance, glass stays at ≤12% white behind cream text, the pattern is decorative and hidden from assistive tech.
 
 ## Plan
 

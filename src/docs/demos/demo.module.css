@@ -261,6 +261,12 @@
   cursor: pointer;
 }
 
+.focusPreview {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 3px;
+  box-shadow: 0 0 0 5px var(--ink);
+}
+
 .dialogFooter {
   display: flex;
   flex-wrap: wrap;

@@ -4,7 +4,7 @@
   overflow-x: auto;
   border: 1px solid var(--color-border);
   border-radius: var(--radius-2);
-  background: rgb(8 6 15 / 0.28);
+  background: var(--surface-sunken);
 }
 
 .table {
@@ -19,7 +19,7 @@
   padding: var(--space-3) var(--space-4);
   text-align: start;
   vertical-align: middle;
-  border-block-end: 1px solid rgb(247 242 230 / 0.08);
+  border-block-end: 1px solid var(--hairline);
 }
 
 .table tbody tr:last-child td {
@@ -27,7 +27,7 @@
 }
 
 .table thead th {
-  background: rgb(8 6 15 / 0.38);
+  background: var(--surface-head);
   font-family: var(--font-label);
   font-size: var(--text-2xs);
   font-weight: 500;
@@ -37,11 +37,11 @@
 }
 
 .table tbody tr:hover {
-  background: rgb(255 255 255 / 0.035);
+  background: var(--wash-hover);
 }
 
 .striped tbody tr:nth-child(even) {
-  background: rgb(255 255 255 / 0.025);
+  background: var(--wash-subtle);
 }
 
 .compact th,
@@ -78,7 +78,7 @@
   letter-spacing: inherit;
   text-transform: inherit;
   cursor: pointer;
-  border-radius: 3px;
+  border-radius: var(--radius-1);
 }
 
 .sortButton:hover {
@@ -99,11 +99,11 @@
 }
 
 .selectedRow {
-  background: rgb(169 240 216 / 0.08);
+  background: var(--selected-row);
 }
 
 .previewRow {
-  background: rgb(255 255 255 / 0.035);
+  background: var(--wash-hover);
 }
 
 .empty {

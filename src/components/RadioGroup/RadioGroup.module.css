@@ -50,7 +50,7 @@
   height: 1.125rem;
   border: 1px solid var(--edge-on-dark);
   border-radius: var(--radius-pill);
-  background: rgb(8 6 15 / 0.32);
+  background: var(--surface-control);
   transition:
     border-color var(--dur-1) var(--ease-standard),
     box-shadow var(--dur-1) var(--ease-standard);

@@ -53,19 +53,19 @@
 }
 
 .primary {
-  border-color: rgb(247 242 230 / 0.28);
+  border-color: var(--edge-button);
   background: linear-gradient(135deg, var(--mint), var(--cyan));
   color: var(--ink);
   box-shadow:
-    inset 0 1px 0 rgb(255 255 255 / 0.5),
-    0 10px 26px rgb(5 4 14 / 0.3);
+    var(--highlight-inset),
+    var(--shadow-control);
 }
 
 .primary:hover:not(:disabled),
 .primary[data-preview="hover"]:not(:disabled) {
   box-shadow:
-    inset 0 1px 0 rgb(255 255 255 / 0.6),
-    0 14px 32px rgb(5 4 14 / 0.36);
+    var(--highlight-inset-strong),
+    var(--shadow-control-hover);
 }
 
 .secondary {
@@ -87,7 +87,7 @@
 }
 
 .danger {
-  border-color: rgb(255 154 168 / 0.45);
+  border-color: var(--edge-danger);
   background: var(--danger);
   color: var(--ink);
 }

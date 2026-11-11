@@ -41,7 +41,7 @@
   height: 1.25rem;
   border: 1px solid var(--edge-on-dark);
   border-radius: var(--radius-1);
-  background: rgb(8 6 15 / 0.32);
+  background: var(--surface-control);
   color: transparent;
   transition:
     background-color var(--dur-1) var(--ease-standard),

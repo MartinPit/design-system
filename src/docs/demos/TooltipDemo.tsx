@@ -106,7 +106,10 @@ export function States() {
       <State label="Focus-triggered">
         <div style={centered}>
           <Tooltip label="Shuffle the deck" placement="bottom" defaultOpen>
-            <button type="button" className={styles.tooltipTrigger}>
+            <button
+              type="button"
+              className={`${styles.tooltipTrigger} ${styles.focusPreview}`}
+            >
               Shuffle
             </button>
           </Tooltip>

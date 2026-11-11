@@ -1,5 +1,5 @@
 import { PageHeader, Prose, Section, Note } from "./page";
-import pattern from "./pattern.module.css";
+import pattern from "../styles/pattern.module.css";
 import styles from "./Accessibility.module.css";
 
 export function AccessibilityPage() {
@@ -13,10 +13,12 @@ export function AccessibilityPage() {
 
       <Section title="Status">
         <Note label="Audited 2026.11">
-          The final pass ran axe-core over all 36 routes at 360, 768, 1024 and
-          1440: 144 page/viewport pairs, zero violations. The keyboard walkthrough
-          covered Dialog, DropdownMenu, Tooltip, Tabs, Toast and Select. The rules
-          and fallbacks below are the ones implemented in the built page.
+          The final pass ran axe-core at 390 and 1440 over all 36 routes: 72
+          route/viewport pairs, zero violations under the strict WCAG 2.0, 2.1
+          and 2.2 A/AA rule set. The same routes had zero page-level horizontal
+          overflow. The keyboard walkthrough covered Dialog, DropdownMenu,
+          Tooltip, Tabs, Toast and Select. The rules and fallbacks below are the
+          ones implemented in the built page.
         </Note>
       </Section>
 

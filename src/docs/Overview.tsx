@@ -1,7 +1,7 @@
 import tokensCss from "../styles/tokens.css?raw";
 import { allComponents } from "./registry";
 import { Orb } from "./Orb";
-import pattern from "./pattern.module.css";
+import pattern from "../styles/pattern.module.css";
 import styles from "./Overview.module.css";
 
 const tokenCount = new Set(
