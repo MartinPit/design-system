@@ -40,6 +40,7 @@ A branch reaches the end when it holds a Vite + React + TypeScript project with 
 - [Scaffold the repo, both branches, and the linktree](tickets/10-scaffold-repo-and-branches.md): main index plus two standalone Vite projects, both green on `npm run verify`, with the ESLint 9 and Fragment Mono gotchas recorded.
 - [Prototype the Arcana docs shell and specimen layout](tickets/08-prototype-arcana-docs-shell.md): folded into the Arcana build; reviewed as the finished docs page.
 - [Prototype the Tidal docs shell and specimen layout](tickets/09-prototype-tidal-docs-shell.md): folded into the Tidal build; reviewed as the finished docs page.
+- [Build the Arcana system and its documentation page](tickets/11-build-arcana-system.md): 27 components and seven foundation pages on `ds/arcana`, 38 tests, strict axe 0/80 jobs, archive character confirmed at 390 and 1440.
 
 ## Not yet specified
 
