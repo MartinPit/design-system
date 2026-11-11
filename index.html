@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Design index — two identities for one flashcards app</title>
+<style>
+  :root {
+    --bg: #f7f6f2;
+    --fg: #1b1a17;
+    --muted: #5f5b52;
+    --line: #d8d4c8;
+    --card: #fffefa;
+    --code: #efede5;
+    --font: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    --mono: ui-monospace, "Cascadia Code", Menlo, Consolas, monospace;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--fg);
+    font: 16px/1.55 var(--font);
+  }
+  .wrap { width: min(1080px, 100% - 2.5rem); margin-inline: auto; }
+  header { padding: 3.5rem 0 1.5rem; }
+  .eyebrow {
+    margin: 0 0 .5rem;
+    font-size: .7rem;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  h1 { margin: 0; font-size: clamp(2rem, 5vw, 3.25rem); line-height: 1.05; letter-spacing: -.03em; max-width: 18ch; }
+  .lede { margin: 1rem 0 0; max-width: 62ch; color: var(--muted); }
+  main { padding-bottom: 4rem; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr)); gap: 1.25rem; margin-top: 2.5rem; }
+  .card {
+    display: flex;
+    flex-direction: column;
+    background: var(--card);
+    border: 1px solid var(--line);
+    text-decoration: none;
+    color: inherit;
+    overflow: hidden;
+  }
+  .card:focus-visible { outline: 2px solid var(--fg); outline-offset: 3px; }
+  .swatch { block-size: 132px; }
+  .swatch.arcana {
+    background:
+      radial-gradient(70% 62% at 14% 86%, #7c2fa8 0%, rgb(212 42 124 / .65) 38%, transparent 72%),
+      linear-gradient(114deg, #f2a23c 0%, #ea6a2f 28%, #d42a7c 55%, #a81440 100%);
+  }
+  .swatch.tidal {
+    background-color: #120b33;
+    background-image:
+      radial-gradient(90% 72% at 86% 4%, rgb(169 240 216 / .95) 0%, rgb(169 240 216 / .55) 22%, transparent 58%),
+      radial-gradient(62% 54% at 72% 27%, rgb(122 135 222 / .5) 0%, transparent 70%),
+      radial-gradient(86% 76% at 8% 102%, #0a0722 0%, rgb(10 7 34 / .78) 40%, transparent 72%),
+      linear-gradient(32deg, #0a0722 0%, #120b33 16%, #3e2a8f 46%, #7a87de 64%, #5bcfe4 82%, #a9f0d8 100%);
+  }
+  .body { padding: 1.1rem 1.2rem 1.3rem; display: grid; gap: .45rem; }
+  .name { margin: 0; font-size: 1.35rem; letter-spacing: -.02em; }
+  .character { margin: 0; color: var(--muted); font-size: .94rem; }
+  .meta { display: flex; flex-wrap: wrap; gap: .4rem .9rem; font: .75rem/1.4 var(--mono); color: var(--muted); }
+  .meta strong { color: var(--fg); font-weight: 600; }
+  .live {
+    align-self: start;
+    display: inline-flex;
+    align-items: center;
+    gap: .35rem;
+    margin-top: .45rem;
+    padding: .45rem .75rem;
+    border: 1px solid var(--fg);
+    color: var(--fg);
+    text-decoration: none;
+    font-size: .82rem;
+    font-weight: 600;
+  }
+  .live:hover { background: var(--fg); color: var(--bg); }
+  pre { margin: .35rem 0 0; padding: .55rem .7rem; background: var(--code); overflow-x: auto; font: .78rem/1.5 var(--mono); }
+  .note { margin-top: 2.5rem; padding-top: 1.25rem; border-top: 1px solid var(--line); display: grid; gap: .75rem; }
+  .note h2 { margin: 0; font-size: .95rem; }
+  .note p { margin: 0; color: var(--muted); font-size: .9rem; max-width: 68ch; }
+  .future { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr)); gap: .75rem; }
+  .future div { border: 1px dashed var(--line); padding: .9rem 1rem; color: var(--muted); font-size: .85rem; }
+  footer { padding: 1.5rem 0 3rem; color: var(--muted); font-size: .8rem; }
+  a { color: inherit; }
+</style>
+</head>
+<body>
+<header class="wrap">
+  <p class="eyebrow">Design index · 2026</p>
+  <h1>Two identities for one flashcards app</h1>
+  <p class="lede">Each system is a complete token layer, a 27-component library with documented states, and a documentation page — built from a different reference card, on its own branch. Same app, two arguments about how it should feel.</p>
+</header>
+<main class="wrap">
+  <div class="grid">
+    <article class="card">
+      <div class="swatch arcana" role="presentation"></div>
+      <div class="body">
+        <h2 class="name">Arcana</h2>
+        <p class="character">Cream and ink, one warm gradient, the grammar of an archive card. Swiss, flat, institutional.</p>
+        <p class="meta"><span><strong>Branch</strong> ds/arcana</span><span><strong>Seed</strong> Card A</span><span><strong>Type</strong> grotesque + mono</span><span><strong>Components</strong> 27</span></p>
+        <a class="live" href="https://martinpit.github.io/design-system/arcana/">Open live <span aria-hidden="true">→</span></a>
+        <pre id="arcana">git switch ds/arcana
+npm install
+npm run dev</pre>
+      </div>
+    </article>
+    <article class="card">
+      <div class="swatch tidal" role="presentation"></div>
+      <div class="body">
+        <h2 class="name">Tidal</h2>
+        <p class="character">Iridescent indigo to mint, a seigaiha field, glass depth, a Didone wordmark. Aquatic and ornamental.</p>
+        <p class="meta"><span><strong>Branch</strong> ds/tidal</span><span><strong>Seed</strong> Card B</span><span><strong>Type</strong> Didone + serif</span><span><strong>Components</strong> 27</span></p>
+        <a class="live" href="https://martinpit.github.io/design-system/tidal/">Open live <span aria-hidden="true">→</span></a>
+        <pre id="tidal">git switch ds/tidal
+npm install
+npm run dev</pre>
+      </div>
+    </article>
+  </div>
+
+  <section class="note" aria-labelledby="future">
+    <h2 id="future">Future prototypes and designs</h2>
+    <p>Placeholders, kept here so the index can grow without a redesign. Nothing below exists yet.</p>
+    <div class="future">
+      <div>Prototype — Arcana study flow</div>
+      <div>Prototype — Tidal study flow</div>
+      <div>Design — a third card direction</div>
+    </div>
+  </section>
+
+  <section class="note" aria-labelledby="how">
+    <h2 id="how">How to read a system</h2>
+    <p>Each system has a live page on GitHub Pages, or can be run locally from its branch. The sidebar holds Overview, seven Foundations pages, 27 components in five groups, and the accessibility note. The branches are independent and never merge.</p>
+  </section>
+</main>
+<footer class="wrap">
+  <p>Plan and decisions: <a href="https://github.com/MartinPit/design-system/blob/main/wayfinder/map.md">wayfinder/map.md</a>. Card transcription: <a href="https://github.com/MartinPit/design-system/blob/main/wayfinder/references/cards.md">wayfinder/references/cards.md</a>.</p>
+</footer>
+</body>
+</html>
