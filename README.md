@@ -25,6 +25,20 @@ Each branch has its own README and its own `npm run verify`.
 
 The wayfinder map and its tickets live in [`wayfinder/`](wayfinder/map.md). The canonical transcription of the two cards is [`wayfinder/references/cards.md`](wayfinder/references/cards.md) — the original image exists only in the originating chat.
 
+## Deploy
+
+Live: **https://martinpit.github.io/design-system/**
+
+GitHub Pages serves a single `gh-pages` branch that carries both compiled sites:
+
+- `/` — the design index (`index.html` from `main`)
+- `/arcana/` — the Arcana build
+- `/tidal/` — the Tidal build
+
+The design branches are never merged; `gh-pages` holds only build output. Vite is configured with `base: "./"` on both branches so assets resolve under the subpaths, and hash routing means no server rewrites are needed.
+
+To republish after changing a branch: build it (`npm ci && npm run build`), copy its `dist/` into `arcana/` or `tidal/` at the root of `gh-pages`, refresh the root `index.html`, then commit and push `gh-pages`.
+
 ## Notes
 
 - One app, two identities. Free rein per system; the shared contract is tokens + 27 components with states + a docs page + WCAG 2.2 AA.
