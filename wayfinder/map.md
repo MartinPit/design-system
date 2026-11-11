@@ -30,6 +30,8 @@ A branch reaches the end when it holds a Vite + React + TypeScript project with 
 
 <!-- one line per closed ticket: name, gist, link to the ticket file -->
 
+- [Deconstruct the Arcana card's visual references](tickets/01-arcana-card-references.md): Marlin Soft SQ is commercial, so Arcana substitutes an OFL grotesque; the gradient is two fields, and four palette values buy AA.
+
 ## Not yet specified
 
 - **Docs template divergence** — whether the two documentation pages share one structural template skinned twice, or diverge in layout logic. Graduates once the docs architecture and both visual languages are settled.

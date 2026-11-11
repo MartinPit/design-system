@@ -2,11 +2,11 @@
 id: "01"
 title: Deconstruct the Arcana card's visual references
 labels: [wayfinder:research]
-status: open
-assignee: null
+status: closed
+assignee: thinker (AFK subagent)
 blocked-by: []
 created: 2026-11-11
-closed: null
+closed: 2026-11-11
 ---
 
 ## Question
@@ -24,3 +24,14 @@ Answer:
 ## Deliverable
 
 `research/arcana-card.md` on branch `research/arcana-card` (already checked out in this worktree). Findings with sources, the three pairings, both constructions, extracted palette, and the AA rule. No React build, no components.
+
+## Resolution — 2026-11-11
+
+Findings: `research/arcana-card.md` on branch `research/arcana-card`, commit `9314d41`. The branch is throwaway and is not merged; read it with `git show research/arcana-card:research/arcana-card.md`.
+
+- **Type:** the card's sans is **Marlin Soft SQ** (FontMesa, commercial; Arc preloads a Basic sample cut — not bundleable). Recommended OFL substitute: **Schibsted Grotesk / Instrument Sans / Fragment Mono** (Swiss Archive). Alternatives: Archivo–Figtree–Martian Mono (Soft Square); Bricolage Grotesque–Hanken Grotesk–DM Mono (Editorial).
+- **The gradient is two fields, not one:** a 114° linear base plus a radial bloom at `(14%, 86%)`. Dark ink `#4A0D63` passes only on the amber end (6.55:1); keep type off the form or on a cream plate clipped to the path.
+- **The palette is narrower than it looks:** lavender 1.41:1, amber 1.89:1, magenta-on-cream 4.28:1. Four adjusted values buy AA text: `#9C5600`, `#B04A13`, `#C41F70`, `#94846A`. Gradient text is out entirely.
+- **Unverified:** Arc's actual Marlin licence, exact card hexes and silhouette (image absent), the seal numbering, and whether the 11px label face is Marlin.
+
+Consumed by: ["Decide the Arcana visual language"](04-arcana-visual-language.md), now unblocked.
