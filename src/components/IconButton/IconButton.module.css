@@ -1,0 +1,74 @@
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: 1px solid transparent;
+  border-radius: var(--radius-pill);
+  background: transparent;
+  color: var(--cream);
+  cursor: pointer;
+  transition:
+    background-color var(--dur-1) var(--ease-standard),
+    border-color var(--dur-1) var(--ease-standard),
+    transform var(--dur-1) var(--ease-standard);
+}
+
+.button:hover:not(:disabled),
+.button[data-preview="hover"]:not(:disabled) {
+  transform: translateY(-1px);
+}
+
+.button:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.button[data-preview="focus"] {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 3px;
+  box-shadow: 0 0 0 5px var(--ink);
+}
+
+.button:disabled {
+  cursor: not-allowed;
+  opacity: 0.45;
+}
+
+.solid {
+  border-color: var(--edge-on-dark);
+  background: var(--glass-2);
+  backdrop-filter: var(--glass-2-blur);
+}
+
+.solid:hover:not(:disabled),
+.solid[data-preview="hover"]:not(:disabled) {
+  background: rgb(255 255 255 / 0.18);
+}
+
+.ghost:hover:not(:disabled),
+.ghost[data-preview="hover"]:not(:disabled) {
+  background: var(--glass-1);
+}
+
+.sm {
+  width: 2rem;
+  height: 2rem;
+}
+
+.md {
+  width: 2.625rem;
+  height: 2.625rem;
+}
+
+@supports not (backdrop-filter: blur(1px)) {
+  .solid {
+    background: var(--glass-fallback);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .button:hover:not(:disabled),
+  .button[data-preview="hover"]:not(:disabled) {
+    transform: none;
+  }
+}

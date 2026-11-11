@@ -1,0 +1,104 @@
+/* Shared field anatomy: label, control, hint, error. */
+
+.field {
+  display: grid;
+  gap: 0.4rem;
+  min-width: 0;
+}
+
+.label {
+  font-family: var(--font-label);
+  font-size: var(--text-2xs);
+  font-weight: 500;
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+
+.control {
+  width: 100%;
+  min-height: 2.625rem;
+  padding: 0 var(--space-3);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-2);
+  background: rgb(8 6 15 / 0.34);
+  color: var(--cream);
+  font-family: var(--font-text);
+  font-size: var(--text-md);
+  line-height: 1.4;
+  transition:
+    border-color var(--dur-1) var(--ease-standard),
+    background-color var(--dur-1) var(--ease-standard);
+}
+
+.control::placeholder {
+  color: var(--color-text-subtle);
+}
+
+.control:hover:not(:disabled):not([readonly]),
+.control[data-preview="hover"]:not(:disabled) {
+  border-color: var(--edge-on-dark);
+}
+
+.control:focus,
+.control[data-preview="focus"] {
+  border-color: var(--cream);
+  background: rgb(8 6 15 / 0.5);
+}
+
+.control[data-preview="focus"] {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 3px;
+  box-shadow: 0 0 0 5px var(--ink);
+}
+
+.control:disabled {
+  color: var(--color-text-disabled);
+  border-color: rgb(247 242 230 / 0.1);
+  cursor: not-allowed;
+}
+
+.control[readonly] {
+  color: var(--color-text-muted);
+  border-style: dashed;
+}
+
+.invalid .control {
+  border-color: var(--danger);
+}
+
+.invalid .label {
+  color: var(--danger);
+}
+
+.sm .control {
+  min-height: 2.125rem;
+  font-size: var(--text-sm);
+}
+
+.hint {
+  margin: 0;
+  font-size: var(--text-xs);
+  color: var(--color-text-subtle);
+}
+
+.error {
+  margin: 0;
+  font-size: var(--text-xs);
+  color: var(--danger);
+}
+
+.meta {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-3);
+  font-family: var(--font-label);
+  font-size: var(--text-2xs);
+  letter-spacing: 0.06em;
+  font-variant-numeric: tabular-nums;
+  color: var(--color-text-subtle);
+}
+
+.required {
+  color: var(--cyan);
+}

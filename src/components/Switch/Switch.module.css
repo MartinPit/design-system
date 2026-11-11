@@ -1,0 +1,89 @@
+.root {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--color-text);
+  font-family: var(--font-text);
+  font-size: var(--text-md);
+  cursor: pointer;
+  border-radius: var(--radius-pill);
+}
+
+.root:disabled {
+  cursor: not-allowed;
+  color: var(--color-text-disabled);
+}
+
+.track {
+  position: relative;
+  display: inline-flex;
+  flex: none;
+  width: 2.75rem;
+  height: 1.5rem;
+  padding: 2px;
+  border: 1px solid var(--edge-on-dark);
+  border-radius: var(--radius-pill);
+  background: rgb(8 6 15 / 0.4);
+  transition:
+    background-color var(--dur-1) var(--ease-standard),
+    border-color var(--dur-1) var(--ease-standard);
+}
+
+.knob {
+  width: 1.125rem;
+  height: 1.125rem;
+  border-radius: var(--radius-pill);
+  background: var(--cream);
+  box-shadow: 0 2px 6px rgb(5 4 14 / 0.45);
+  transition: translate var(--dur-1) var(--ease-standard);
+}
+
+.root[aria-checked="true"] .track {
+  border-color: var(--mint);
+  background: var(--mint);
+}
+
+.root[aria-checked="true"] .knob {
+  translate: 1.25rem 0;
+  background: var(--ink);
+}
+
+.root:hover:not(:disabled) .track,
+.root[data-preview="hover"] .track {
+  border-color: var(--cream);
+}
+
+.root[data-preview="focus"] {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 3px;
+  box-shadow: 0 0 0 5px var(--ink);
+}
+
+.sm {
+  gap: var(--space-2);
+  font-size: var(--text-sm);
+}
+
+.sm .track {
+  width: 2.25rem;
+  height: 1.25rem;
+}
+
+.sm .knob {
+  width: 0.875rem;
+  height: 0.875rem;
+}
+
+.sm[aria-checked="true"] .knob {
+  translate: 1rem 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .knob,
+  .track {
+    transition: none;
+  }
+}

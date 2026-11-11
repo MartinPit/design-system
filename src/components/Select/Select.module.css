@@ -1,0 +1,23 @@
+.wrap {
+  position: relative;
+}
+
+.select {
+  appearance: none;
+  padding-right: var(--space-7);
+  cursor: pointer;
+}
+
+.select option {
+  background: var(--indigo);
+  color: var(--cream);
+}
+
+.chevron {
+  position: absolute;
+  inset-inline-end: var(--space-3);
+  inset-block-start: 50%;
+  translate: 0 -50%;
+  color: var(--color-text-muted);
+  pointer-events: none;
+}

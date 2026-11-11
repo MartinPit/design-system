@@ -1,0 +1,133 @@
+.zoneGrid {
+  display: grid;
+  gap: var(--space-3);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin-block-end: var(--space-5);
+}
+
+.zoneDark,
+.zoneMid,
+.zoneLight {
+  display: grid;
+  gap: var(--space-3);
+  min-height: 8rem;
+  padding: var(--space-4);
+  border-radius: var(--radius-2);
+  border: 1px solid var(--color-border);
+  align-content: end;
+}
+
+.zoneDark {
+  background: var(--abyss);
+  color: var(--cream);
+}
+
+.zoneMid {
+  background: var(--violet);
+  color: var(--cream);
+}
+
+.zoneLight {
+  background: var(--mint);
+  color: var(--ink);
+}
+
+.zoneDark p,
+.zoneMid p,
+.zoneLight p {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: var(--text-2xl);
+  font-variation-settings: "opsz" 48, "wght" 560;
+  line-height: 1;
+}
+
+.zoneLabel {
+  font-family: var(--font-label);
+  font-size: var(--text-2xs);
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  opacity: 0.72;
+}
+
+.focusRow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-6);
+  padding: var(--space-6) var(--space-5);
+  margin-block-end: var(--space-5);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-2);
+  background:
+    radial-gradient(60% 120% at 100% 0%, rgb(122 135 222 / 0.35), transparent 70%),
+    var(--abyss);
+}
+
+.focusExample {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2.625rem;
+  padding: 0 var(--space-5);
+  border: 0;
+  border-radius: var(--radius-pill);
+  background: linear-gradient(135deg, var(--mint), var(--cyan));
+  color: var(--ink);
+  font-family: var(--font-label);
+  font-size: var(--text-xs);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  outline: 2px solid var(--cream);
+  outline-offset: 3px;
+  box-shadow: 0 0 0 5px var(--ink);
+}
+
+.focusCaption {
+  font-family: var(--font-label);
+  font-size: var(--text-2xs);
+  line-height: 1.8;
+  color: var(--color-text-muted);
+}
+
+.patternRow {
+  display: grid;
+  gap: var(--space-3);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin-block-end: var(--space-5);
+}
+
+.patternTile {
+  position: relative;
+  overflow: hidden;
+  min-height: 8rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-2);
+  background: var(--indigo);
+}
+
+.patternTile:nth-child(2) {
+  --pattern-tint: rgb(255 255 255 / 0.2);
+}
+
+.patternTile span {
+  position: absolute;
+  inset-block-end: var(--space-3);
+  inset-inline-start: var(--space-3);
+  z-index: 2;
+  padding: 0.2rem 0.45rem;
+  border-radius: var(--radius-1);
+  background: rgb(10 7 34 / 0.78);
+  font-family: var(--font-label);
+  font-size: var(--text-2xs);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--cream);
+}
+
+@media (max-width: 700px) {
+  .zoneGrid,
+  .patternRow {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

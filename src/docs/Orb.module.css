@@ -1,0 +1,55 @@
+.orb {
+  position: relative;
+  display: block;
+  flex: none;
+  overflow: hidden;
+  border-radius: var(--radius-pill);
+  background:
+    radial-gradient(circle at 30% 24%, rgb(255 255 255 / 0.95) 0%, transparent 16%),
+    radial-gradient(circle at 68% 76%, rgb(169 240 216 / 0.5) 0%, transparent 40%),
+    radial-gradient(circle at 48% 46%, rgb(122 135 222 / 0.7) 0%, transparent 60%),
+    linear-gradient(155deg, #8e9be8, #5a4ab0 52%, #241a5e);
+  box-shadow:
+    inset -10px -14px 28px rgb(5 4 14 / 0.6),
+    inset 8px 10px 24px rgb(255 255 255 / 0.18),
+    0 20px 44px rgb(5 4 14 / 0.42);
+}
+
+.orb::after {
+  content: "";
+  position: absolute;
+  inset: 12%;
+  border: 1px solid rgb(255 255 255 / 0.22);
+  border-radius: inherit;
+}
+
+.shimmer {
+  position: absolute;
+  inset: -40%;
+  background: linear-gradient(
+    115deg,
+    transparent 38%,
+    rgb(255 255 255 / 0.32) 48%,
+    rgb(255 255 255 / 0.08) 54%,
+    transparent 62%
+  );
+  translate: -70% 0;
+  animation: shimmer 6s var(--ease-standard) infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    translate: -70% 0;
+  }
+  45%,
+  100% {
+    translate: 70% 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .shimmer {
+    animation: none;
+    opacity: 0;
+  }
+}

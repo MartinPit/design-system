@@ -1,32 +1,84 @@
+import { useEffect } from "react";
+import { Shell } from "./docs/Shell";
+import { useHashRoute } from "./docs/useHashRoute";
+import { OverviewPage } from "./docs/Overview";
+import { FoundationsPage } from "./docs/foundations/FoundationsPage";
+import { ComponentPage } from "./docs/ComponentPage";
+import { AccessibilityPage } from "./docs/Accessibility";
+import { findComponent } from "./docs/registry";
+import { foundationPages } from "./docs/routes";
+import type { DocsRoute } from "./docs/routes";
+
+function effectiveRoute(route: DocsRoute): DocsRoute {
+  if (route.kind === "components" && !findComponent(route.slug)) {
+    return { kind: "overview" };
+  }
+  return route;
+}
+
+function routeTitle(route: DocsRoute): string {
+  switch (route.kind) {
+    case "foundations": {
+      const page = foundationPages.find((item) => item.slug === route.slug);
+      return page ? `Foundations / ${page.name}` : "Foundations";
+    }
+    case "components": {
+      const component = findComponent(route.slug);
+      return component ? `Components / ${component.name}` : "Overview";
+    }
+    case "accessibility":
+      return "Accessibility";
+    case "overview":
+    default:
+      return "Overview";
+  }
+}
+
+function RouteView({ route }: { route: DocsRoute }) {
+  switch (route.kind) {
+    case "foundations":
+      return <FoundationsPage slug={route.slug} />;
+    case "components": {
+      const component = findComponent(route.slug);
+      return component ? (
+        <ComponentPage doc={component} />
+      ) : (
+        <OverviewPage />
+      );
+    }
+    case "accessibility":
+      return <AccessibilityPage />;
+    case "overview":
+    default:
+      return <OverviewPage />;
+  }
+}
+
 export default function App() {
+  const rawRoute = useHashRoute();
+  const route = effectiveRoute(rawRoute);
+
+  useEffect(() => {
+    document.title = `${routeTitle(route)} — Tidal`;
+  }, [route]);
+
+  useEffect(() => {
+    if (!window.location.hash) {
+      window.history.replaceState(null, "", "#/overview");
+    }
+  }, []);
+
+  useEffect(() => {
+    try {
+      window.scrollTo(0, 0);
+    } catch {
+      // jsdom does not implement scrolling; the browser path does.
+    }
+  }, [route]);
+
   return (
-    <main style={{ padding: "5rem 1.5rem", maxWidth: "60ch", margin: "0 auto" }}>
-      <p
-        style={{
-          fontFamily: "var(--font-label)",
-          fontSize: "var(--text-2xs)",
-          letterSpacing: "var(--tracking-label)",
-          textTransform: "uppercase",
-          color: "var(--color-text-muted)",
-          margin: 0,
-        }}
-      >
-        A design system for a flashcards app
-      </p>
-      <h1
-        style={{
-          fontFamily: "var(--font-display)",
-          fontVariationSettings: '"opsz" 72, "wght" 560',
-          fontSize: "var(--text-wordmark)",
-          lineHeight: 0.95,
-          margin: ".75rem 0 1rem",
-        }}
-      >
-        Tidal
-      </h1>
-      <p style={{ margin: 0, color: "var(--color-text-muted)" }}>
-        Scaffold ready. The documentation page is built by the implementation ticket.
-      </p>
-    </main>
+    <Shell route={route}>
+      <RouteView route={route} />
+    </Shell>
   );
 }

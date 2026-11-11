@@ -17,9 +17,19 @@ npm run verify    # lint + typecheck + tests + production build
 ## Inside
 
 - `src/styles/tokens.css` — single source of truth for colour, type, shape, space, motion.
-- `src/components/` — the 27-component library, CSS Modules per component.
-- `src/docs/` — the documentation page and the registry that drives its nav.
-- 27 components in five groups: Actions, Forms, Navigation, Display, Overlay.
+- `src/components/` — 13 components delivered in Phase A, CSS Modules per component: Actions (Button, IconButton, Link), Forms (TextField, TextArea, Select, Checkbox, RadioGroup, Switch, Slider, SearchField) and Navigation (SegmentedControl, Tabs).
+- `src/docs/` — the hash-routed documentation page, foundations read from live tokens, and the registry that drives nav and specimens.
+- `src/icons/` — inline SVG icons at 1.5px stroke; no icon dependency.
+
+The inventory is 27 components. Display (Card, Badge, Tag, Avatar, Table, Progress, Skeleton, EmptyState) and Overlay (Tooltip, Dialog, DropdownMenu, Toast) arrive in Phase B; no placeholder pages ship before them.
+
+## Routes
+
+`#/overview`, `#/foundations/<colour|type|space|shape|elevation|motion|icons>`,
+`#/components/<button|icon-button|link|text-field|text-area|select|checkbox|radio-group|switch|slider|search-field|segmented-control|tabs>`,
+`#/accessibility`.
+
+Unknown hashes fall back to Overview. The sidebar is fixed at ≥1024px, a collapsible rail from 768–1023px, and a `Contents` disclosure below 768px.
 
 ## Quality bar
 

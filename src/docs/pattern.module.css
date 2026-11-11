@@ -1,0 +1,20 @@
+/* Seigaiha: a stroke-only tile used as an alpha mask over a tinted layer.
+   R=100, four rings, 200x200. Decorative only. */
+.tile {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-color: var(--pattern-tint);
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200' viewBox='0 0 200 200'%3E%3Cg fill='none' stroke='%23fff' stroke-width='3.5'%3E%3Ccircle cx='0' cy='100' r='100'/%3E%3Ccircle cx='0' cy='100' r='75'/%3E%3Ccircle cx='0' cy='100' r='50'/%3E%3Ccircle cx='0' cy='100' r='25'/%3E%3Ccircle cx='200' cy='100' r='100'/%3E%3Ccircle cx='200' cy='100' r='75'/%3E%3Ccircle cx='200' cy='100' r='50'/%3E%3Ccircle cx='200' cy='100' r='25'/%3E%3Ccircle cx='100' cy='200' r='100'/%3E%3Ccircle cx='100' cy='200' r='75'/%3E%3Ccircle cx='100' cy='200' r='50'/%3E%3Ccircle cx='100' cy='200' r='25'/%3E%3Ccircle cx='100' cy='0' r='100'/%3E%3Ccircle cx='100' cy='0' r='75'/%3E%3Ccircle cx='100' cy='0' r='50'/%3E%3Ccircle cx='100' cy='0' r='25'/%3E%3C/g%3E%3C/svg%3E");
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200' viewBox='0 0 200 200'%3E%3Cg fill='none' stroke='%23fff' stroke-width='3.5'%3E%3Ccircle cx='0' cy='100' r='100'/%3E%3Ccircle cx='0' cy='100' r='75'/%3E%3Ccircle cx='0' cy='100' r='50'/%3E%3Ccircle cx='0' cy='100' r='25'/%3E%3Ccircle cx='200' cy='100' r='100'/%3E%3Ccircle cx='200' cy='100' r='75'/%3E%3Ccircle cx='200' cy='100' r='50'/%3E%3Ccircle cx='200' cy='100' r='25'/%3E%3Ccircle cx='100' cy='200' r='100'/%3E%3Ccircle cx='100' cy='200' r='75'/%3E%3Ccircle cx='100' cy='200' r='50'/%3E%3Ccircle cx='100' cy='200' r='25'/%3E%3Ccircle cx='100' cy='0' r='100'/%3E%3Ccircle cx='100' cy='0' r='75'/%3E%3Ccircle cx='100' cy='0' r='50'/%3E%3Ccircle cx='100' cy='0' r='25'/%3E%3C/g%3E%3C/svg%3E");
+  -webkit-mask-size: var(--pattern-size) var(--pattern-size);
+  mask-size: var(--pattern-size) var(--pattern-size);
+  -webkit-mask-repeat: repeat;
+  mask-repeat: repeat;
+}
+
+@media (prefers-contrast: more), (forced-colors: active) {
+  .tile {
+    background-color: transparent;
+  }
+}

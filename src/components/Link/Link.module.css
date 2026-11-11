@@ -1,0 +1,64 @@
+.link {
+  color: var(--color-accent);
+  text-decoration-line: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.2em;
+  border-radius: 3px;
+  transition:
+    color var(--dur-1) var(--ease-standard),
+    text-decoration-color var(--dur-1) var(--ease-standard);
+}
+
+.link:hover,
+.link[data-preview="hover"] {
+  color: var(--color-text-strong);
+  text-decoration-color: var(--cyan);
+}
+
+.link:visited,
+.link[data-preview="visited"] {
+  color: var(--info);
+}
+
+.link[data-preview="focus"] {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 3px;
+  box-shadow: 0 0 0 5px var(--ink);
+}
+
+.link[aria-disabled="true"] {
+  color: var(--color-text-disabled);
+  text-decoration-color: transparent;
+  cursor: not-allowed;
+}
+
+.standalone {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-family: var(--font-label);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-decoration-line: none;
+}
+
+.standalone::after {
+  content: "→";
+  transition: transform var(--dur-1) var(--ease-standard);
+}
+
+.standalone:hover::after,
+.standalone[data-preview="hover"]::after {
+  transform: translateX(0.2em);
+}
+
+.sm {
+  font-size: var(--text-xs);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .standalone:hover::after,
+  .standalone[data-preview="hover"]::after {
+    transform: none;
+  }
+}

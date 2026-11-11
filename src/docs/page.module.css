@@ -1,0 +1,255 @@
+.header {
+  max-width: 66ch;
+  margin-block-end: var(--space-8);
+}
+
+.eyebrow {
+  margin: 0 0 var(--space-3);
+  font-family: var(--font-label);
+  font-size: var(--text-2xs);
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  color: var(--color-accent);
+}
+
+.title {
+  margin: 0;
+  font-size: clamp(2rem, 6vw, 4rem);
+  font-variation-settings: "opsz" 72, "wght" 560;
+  line-height: 0.92;
+  color: var(--color-text-strong);
+}
+
+.lede {
+  margin: var(--space-4) 0 0;
+  max-width: 58ch;
+  font-size: var(--text-xl);
+  line-height: 1.45;
+  color: var(--color-text-muted);
+}
+
+.meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  margin-block-start: var(--space-4);
+}
+
+.section {
+  padding-block: var(--space-6);
+  border-block-end: 1px solid var(--color-border);
+}
+
+.section:last-child {
+  border-block-end: 0;
+  padding-block-end: 0;
+}
+
+.sectionHead {
+  margin-block-end: var(--space-5);
+}
+
+.sectionTitle {
+  margin: 0;
+  font-size: var(--text-2xl);
+  font-variation-settings: "opsz" 48, "wght" 560;
+}
+
+.sectionLead {
+  margin: var(--space-2) 0 0;
+  max-width: var(--measure);
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+}
+
+.prose {
+  max-width: 72ch;
+}
+
+.prose p {
+  margin: 0 0 var(--space-4);
+}
+
+.prose p:last-child {
+  margin-block-end: 0;
+}
+
+.prose h3 {
+  margin: var(--space-5) 0 var(--space-2);
+  font-size: var(--text-xl);
+}
+
+.prose ul {
+  margin: 0 0 var(--space-4);
+  padding-inline-start: 1.2em;
+}
+
+.prose li {
+  margin-block-end: var(--space-2);
+}
+
+.prose li::marker {
+  color: var(--color-accent);
+}
+
+.tableWrap {
+  overflow-x: auto;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-2);
+  background: rgb(8 6 15 / 0.28);
+}
+
+.table {
+  width: 100%;
+  min-width: 40rem;
+  border-collapse: collapse;
+  font-size: var(--text-sm);
+}
+
+.table th,
+.table td {
+  padding: var(--space-3) var(--space-4);
+  text-align: start;
+  vertical-align: top;
+  border-block-end: 1px solid rgb(247 242 230 / 0.08);
+}
+
+.table tr:last-child th,
+.table tr:last-child td {
+  border-block-end: 0;
+}
+
+.table thead th {
+  font-family: var(--font-label);
+  font-size: var(--text-2xs);
+  font-weight: 500;
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  color: var(--color-text-subtle);
+  background: rgb(8 6 15 / 0.35);
+}
+
+.table tbody tr:hover {
+  background: rgb(255 255 255 / 0.03);
+}
+
+.propName {
+  font-family: var(--font-label);
+  font-size: var(--text-xs);
+  color: var(--cyan);
+}
+
+.propType {
+  font-family: var(--font-label);
+  font-size: var(--text-2xs);
+  color: var(--mint);
+}
+
+.propDefault {
+  font-family: var(--font-label);
+  font-size: var(--text-2xs);
+  color: var(--color-text-muted);
+}
+
+.propDescription {
+  color: var(--color-text-muted);
+  max-width: 34ch;
+}
+
+.usage {
+  display: grid;
+  gap: var(--space-4);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.usageCard {
+  padding: var(--space-4) var(--space-5);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-2);
+  background: rgb(8 6 15 / 0.28);
+}
+
+.usageCard ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: var(--space-2);
+}
+
+.usageCard li {
+  position: relative;
+  padding-inline-start: 1.4rem;
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+}
+
+.usageCard li::before {
+  position: absolute;
+  inset-inline-start: 0;
+  font-family: var(--font-label);
+  font-size: var(--text-xs);
+}
+
+.doCard {
+  border-color: rgb(124 224 180 / 0.3);
+}
+
+.doCard li::before {
+  content: "✓";
+  color: var(--success);
+}
+
+.dontCard {
+  border-color: rgb(255 154 168 / 0.3);
+}
+
+.dontCard li::before {
+  content: "×";
+  color: var(--danger);
+}
+
+.usageLabel {
+  margin: 0 0 var(--space-3);
+  font-family: var(--font-label);
+  font-size: var(--text-2xs);
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+}
+
+.doCard .usageLabel {
+  color: var(--success);
+}
+
+.dontCard .usageLabel {
+  color: var(--danger);
+}
+
+.note {
+  padding: var(--space-4) var(--space-5);
+  border: 1px solid rgb(155 184 255 / 0.34);
+  border-radius: var(--radius-2);
+  background: rgb(155 184 255 / 0.06);
+}
+
+.noteLabel {
+  margin: 0 0 var(--space-2);
+  font-family: var(--font-label);
+  font-size: var(--text-2xs);
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  color: var(--info);
+}
+
+.noteBody {
+  margin: 0;
+  max-width: 68ch;
+  font-size: var(--text-sm);
+  color: var(--color-text);
+}
+
+@media (max-width: 720px) {
+  .usage {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
