@@ -12,7 +12,7 @@ Two candidate identities for one flashcards app, delivered as two complete desig
 - **Arcana** (`ds/arcana`) — the cream/editorial, archival, warm-gradient direction read from Card A.
 - **Tidal** (`ds/tidal`) — the dark, iridescent, ornamental seigaiha direction read from Card B.
 
-A branch reaches the end when it holds a Vite + React + TypeScript project with a full token layer, a ~25-component library documenting every state, and a documentation showcase page (Foundations + Components — no app screens), clearing the quality bar below. `main` holds a linktree page that links to both systems and to future prototypes and designs.
+A branch reaches the end when it holds a Vite + React + TypeScript project with a full token layer, a 27-component library documenting every state, and a documentation showcase page (Foundations + Components — no app screens), clearing the quality bar below. `main` holds a design index that lists both systems with their run commands and placeholders for future prototypes and designs.
 
 ## Notes
 
@@ -25,6 +25,7 @@ A branch reaches the end when it holds a Vite + React + TypeScript project with 
 - **Execution is carried in this effort** — the default planning-only rule is overridden: build tickets are in scope. Planning still happens first, one decision per ticket.
 - **Skills:** grilling + domain-modeling for HITL tickets, research for AFK tickets, prototype for shells and signature surfaces.
 - **Branches:** `ds/arcana`, `ds/tidal`, throwaway `research/*`. The tracker stays on `main`.
+- **Delivered 2026-11-11.** All 14 tickets closed. Arcana at `4a6a1d4`, Tidal at `75c3725`; `main` carries the design index. Implementer worktrees removed; `research/*` branches remain as context pointers only.
 
 ## Decisions so far
 
@@ -40,18 +41,14 @@ A branch reaches the end when it holds a Vite + React + TypeScript project with 
 - [Scaffold the repo, both branches, and the linktree](tickets/10-scaffold-repo-and-branches.md): main index plus two standalone Vite projects, both green on `npm run verify`, with the ESLint 9 and Fragment Mono gotchas recorded.
 - [Prototype the Arcana docs shell and specimen layout](tickets/08-prototype-arcana-docs-shell.md): folded into the Arcana build; reviewed as the finished docs page.
 - [Prototype the Tidal docs shell and specimen layout](tickets/09-prototype-tidal-docs-shell.md): folded into the Tidal build; reviewed as the finished docs page.
-- [Build the Arcana system and its documentation page](tickets/11-build-arcana-system.md): 27 components and seven foundation pages on `ds/arcana`, 38 tests, strict axe 0/80 jobs, archive character confirmed at 390 and 1440.
+- [Build the Arcana system and its documentation page](tickets/11-build-arcana-system.md): 27 components and seven foundation pages on `ds/arcana`, 44 tests, strict axe 0 violations, archive character confirmed at 390 and 1440.
+- [Build the Tidal system and its documentation page](tickets/12-build-tidal-system.md): 27 components on `ds/tidal`, 40 tests, strict axe 0 violations, iridescent identity held with body content on dark panels.
+- [Verify both branches against the quality bar](tickets/13-verify-quality-bar.md): both branches green — 44/40 tests, strict axe 0 violations, no overflow, skip links and disabled states fixed, review defects closed.
+- [Publish the linktree entries for both systems](tickets/14-publish-linktree.md): `main`'s design index carries both systems with live swatches, commands, and placeholders for future prototypes.
 
 ## Not yet specified
 
-- **Docs template divergence** — whether the two documentation pages share one structural template skinned twice, or diverge in layout logic. Graduates once the docs architecture and both visual languages are settled.
-- **Iconography** — inline SVG set drawn per system versus a licensed icon library restyled per system.
-- **Density and spacing** — the editorial system likely breathes; the ornamental one may compress. Scales are named in the visual-language tickets, but the resulting docs density is not yet visible.
-- **Code samples in docs** — whether specimens carry copyable React snippets or only live demos and prop tables.
-- **Linktree treatment** — a plain index versus a page that previews each system with live swatches and screenshots. Graduates after both builds exist.
-- **Motion vocabularies** — beyond duration and easing, whether Tidal gets an iridescent shimmer and Arcana a stamp/print reveal.
-- **Dark/light variants** — whether each system ships a second mode beyond its primary (Arcana light-first, Tidal dark-first).
-- **Accessibility verification method** — automated axe pass versus a manual keyboard and contrast audit, or both.
+None. The route is walked; every ticket is closed. Anything below is a deliberate boundary, not fog.
 
 ## Out of scope
 
@@ -59,3 +56,6 @@ A branch reaches the end when it holds a Vite + React + TypeScript project with 
 - **Deploying the branches** — no hosting; the linktree on `main` is the index (Q11).
 - **A shared component package or monorepo** — free rein per system (Q9); the two branches stay independent.
 - **Merging either design branch into `main`.**
+- **A second light/dark mode per system** — each ships its primary mode (Arcana light, Tidal dark) with reduced-motion/contrast/transparency variants, not a full second theme.
+- **Copyable code samples in the docs** — specimens are live demos plus props tables; no snippet playground.
+- **A third card direction** — only the two requested identities were built; the index carries a placeholder for it.
