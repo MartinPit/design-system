@@ -1,5 +1,7 @@
 # Arcana
 
+**Live:** https://martinpit.github.io/design-system/arcana/
+
 A design system for a flashcards app, built from **Card A** — the cream archive card with one warm gradient form, a purple monogram, seals, and a ruled label strip.
 
 ## Character

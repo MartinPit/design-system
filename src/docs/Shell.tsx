@@ -105,12 +105,12 @@ export function Shell({
               <span className={styles.seedName}>Card A</span>
               <Redactions count={3} />
             </span>
-            <span
+            <a
               className={styles.indexLink}
-              title="The design index lives on the main branch"
+              href="../"
             >
               <span aria-hidden="true">←</span> Design index
-            </span>
+            </a>
           </div>
         </div>
       </header>
