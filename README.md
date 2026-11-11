@@ -17,23 +17,23 @@ npm run verify    # lint + typecheck + tests + production build
 ## Inside
 
 - `src/styles/tokens.css` — single source of truth for colour, type, shape, space, motion.
-- `src/components/` — 13 components delivered in Phase A, CSS Modules per component: Actions (Button, IconButton, Link), Forms (TextField, TextArea, Select, Checkbox, RadioGroup, Switch, Slider, SearchField) and Navigation (SegmentedControl, Tabs).
+- `src/components/` — the full 27-component inventory, CSS Modules per component: Actions, Forms, Navigation, Display and Overlay.
 - `src/docs/` — the hash-routed documentation page, foundations read from live tokens, and the registry that drives nav and specimens.
 - `src/icons/` — inline SVG icons at 1.5px stroke; no icon dependency.
 
-The inventory is 27 components. Display (Card, Badge, Tag, Avatar, Table, Progress, Skeleton, EmptyState) and Overlay (Tooltip, Dialog, DropdownMenu, Toast) arrive in Phase B; no placeholder pages ship before them.
+Every page follows the same contract: live demo, variant matrix, forced state grid, props table, two do and two don't, and one accessibility note. Overlays use opaque abyss surfaces, never the luminous middle of the ground.
 
 ## Routes
 
 `#/overview`, `#/foundations/<colour|type|space|shape|elevation|motion|icons>`,
-`#/components/<button|icon-button|link|text-field|text-area|select|checkbox|radio-group|switch|slider|search-field|segmented-control|tabs>`,
+`#/components/<button|icon-button|link|text-field|text-area|select|checkbox|radio-group|switch|slider|search-field|segmented-control|tabs|breadcrumb|pagination|card|badge|tag|avatar|table|progress|skeleton|empty-state|tooltip|dialog|dropdown-menu|toast>`,
 `#/accessibility`.
 
-Unknown hashes fall back to Overview. The sidebar is fixed at ≥1024px, a collapsible rail from 768–1023px, and a `Contents` disclosure below 768px.
+Unknown hashes fall back to Overview. The sidebar is fixed at ≥1024px, a collapsible rail from 768–1023px, and a `Contents` disclosure below 768px that closes on navigation.
 
 ## Quality bar
 
-WCAG 2.2 AA, visible focus, full keyboard operation, responsive 360–1440, `prefers-reduced-motion`, `prefers-reduced-transparency`. Deliberate deviations from the card are listed on the documentation page's Accessibility section: cream replaces the black wordmark, type is zoned by luminance, glass stays at ≤12% white behind cream text, the pattern is decorative and hidden from assistive tech.
+WCAG 2.2 AA, visible focus, full keyboard operation, responsive 360–1440, `prefers-reduced-motion`, `prefers-reduced-transparency`, `prefers-contrast`, `forced-colors`. The final pass ran axe-core against the built page across every route at 360, 768, 1024 and 1440 with zero violations, plus keyboard checks for Dialog, DropdownMenu, Tooltip, Tabs, Toast and Select. Deliberate deviations from the card are listed on the Accessibility page: cream replaces the black wordmark, type is zoned by luminance, glass stays at ≤12% white behind cream text, the pattern is decorative and hidden from assistive tech.
 
 ## Plan
 

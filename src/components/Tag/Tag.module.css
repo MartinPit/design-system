@@ -1,0 +1,68 @@
+.tag {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  max-width: 100%;
+  padding: 0.18rem 0.55rem;
+  border: 1px solid var(--color-border-strong);
+  border-radius: var(--radius-pill);
+  background: var(--glass-1);
+  color: var(--color-text);
+  font-size: var(--text-xs);
+  line-height: 1.4;
+}
+
+.sm {
+  padding: 0.1rem 0.45rem;
+  font-size: 0.625rem;
+}
+
+.label {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.removable {
+  padding-inline-end: 0.2rem;
+}
+
+.remove {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  width: 1.15rem;
+  height: 1.15rem;
+  padding: 0;
+  border: 0;
+  border-radius: var(--radius-pill);
+  background: transparent;
+  color: var(--color-text-muted);
+  cursor: pointer;
+}
+
+.remove:hover:not(:disabled),
+.remove[data-preview="hover"]:not(:disabled) {
+  background: var(--glass-2);
+  color: var(--cream);
+}
+
+.remove[data-preview="focus"] {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 2px;
+  box-shadow: 0 0 0 4px var(--ink);
+}
+
+.remove:disabled {
+  cursor: not-allowed;
+}
+
+.disabled {
+  color: var(--color-text-disabled);
+  border-color: var(--color-border);
+}
+
+.disabled .remove {
+  opacity: 0.5;
+}

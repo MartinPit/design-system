@@ -1,0 +1,118 @@
+.wrap {
+  width: 100%;
+  min-width: 0;
+  overflow-x: auto;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-2);
+  background: rgb(8 6 15 / 0.28);
+}
+
+.table {
+  width: 100%;
+  min-width: 40rem;
+  border-collapse: collapse;
+  font-size: var(--text-sm);
+}
+
+.table th,
+.table td {
+  padding: var(--space-3) var(--space-4);
+  text-align: start;
+  vertical-align: middle;
+  border-block-end: 1px solid rgb(247 242 230 / 0.08);
+}
+
+.table tbody tr:last-child td {
+  border-block-end: 0;
+}
+
+.table thead th {
+  background: rgb(8 6 15 / 0.38);
+  font-family: var(--font-label);
+  font-size: var(--text-2xs);
+  font-weight: 500;
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  color: var(--color-text-subtle);
+}
+
+.table tbody tr:hover {
+  background: rgb(255 255 255 / 0.035);
+}
+
+.striped tbody tr:nth-child(even) {
+  background: rgb(255 255 255 / 0.025);
+}
+
+.compact th,
+.compact td {
+  padding: var(--space-2) var(--space-3);
+}
+
+.selectCell {
+  width: 3rem;
+  padding-inline-end: 0;
+}
+
+.start {
+  text-align: start;
+}
+
+.end {
+  text-align: end;
+}
+
+.center {
+  text-align: center;
+}
+
+.sortButton {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  letter-spacing: inherit;
+  text-transform: inherit;
+  cursor: pointer;
+  border-radius: 3px;
+}
+
+.sortButton:hover {
+  color: var(--cream);
+}
+
+.sortIcon {
+  color: var(--mint);
+}
+
+.sortIdle {
+  color: var(--color-text-subtle);
+  opacity: 0.55;
+}
+
+.sorted {
+  color: var(--cream);
+}
+
+.selectedRow {
+  background: rgb(169 240 216 / 0.08);
+}
+
+.previewRow {
+  background: rgb(255 255 255 / 0.035);
+}
+
+.empty {
+  padding: var(--space-7) var(--space-4);
+  text-align: center;
+  color: var(--color-text-muted);
+}
+
+.empty svg {
+  margin: 0 auto var(--space-2);
+  color: var(--color-text-subtle);
+}

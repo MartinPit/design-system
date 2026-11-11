@@ -1,4 +1,5 @@
-import { render, screen } from "@testing-library/react";
+import { fireEvent, render, screen, waitFor } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 import { afterEach, describe, expect, it } from "vitest";
 import App from "../App";
 
@@ -48,14 +49,30 @@ describe("docs routing", () => {
     ).toBeInTheDocument();
   });
 
-  it("lists only delivered components in the sidebar", () => {
+  it("lists every delivered component in the sidebar", () => {
     renderAt("#/overview");
 
     expect(
       screen.getByRole("link", { name: "TextField" }),
     ).toBeInTheDocument();
     expect(
-      screen.queryByRole("link", { name: "Breadcrumb" }),
-    ).not.toBeInTheDocument();
+      screen.getByRole("link", { name: "Breadcrumb" }),
+    ).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: "Toast" })).toBeInTheDocument();
+  });
+
+  it("closes the Contents disclosure on navigation", async () => {
+    const user = userEvent.setup();
+    renderAt("#/overview");
+
+    const toggle = screen.getByRole("button", { hidden: true });
+    fireEvent.click(toggle);
+    expect(toggle).toHaveAttribute("aria-expanded", "true");
+
+    await user.click(screen.getByRole("link", { name: "Colour" }));
+
+    await waitFor(() =>
+      expect(toggle).toHaveAttribute("aria-expanded", "false"),
+    );
   });
 });

@@ -55,7 +55,8 @@ export function Prose({ children }: { children: ReactNode }) {
 
 export function PropsTable({ rows }: { rows: PropRow[] }) {
   return (
-    <div className={styles.tableWrap}>
+    // eslint-disable-next-line jsx-a11y/no-noninteractive-tabindex -- a scroll container must be reachable by keyboard
+    <div tabIndex={0} className={styles.tableWrap} role="region" aria-label="Component props">
       <table className={styles.table}>
         <thead>
           <tr>

@@ -1,4 +1,5 @@
 import tokensCss from "../styles/tokens.css?raw";
+import { allComponents } from "./registry";
 import { Orb } from "./Orb";
 import pattern from "./pattern.module.css";
 import styles from "./Overview.module.css";
@@ -122,7 +123,7 @@ export function OverviewPage() {
 
       <section className={styles.stats} aria-label="System facts">
         <div className={styles.stat}>
-          <span className={styles.statValue}>27</span>
+          <span className={styles.statValue}>{allComponents.length}</span>
           <span className={styles.statLabel}>Components</span>
         </div>
         <div className={styles.stat}>

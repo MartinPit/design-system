@@ -12,6 +12,20 @@ import * as SliderDemo from "./demos/SliderDemo";
 import * as SearchFieldDemo from "./demos/SearchFieldDemo";
 import * as SegmentedControlDemo from "./demos/SegmentedControlDemo";
 import * as TabsDemo from "./demos/TabsDemo";
+import * as BreadcrumbDemo from "./demos/BreadcrumbDemo";
+import * as PaginationDemo from "./demos/PaginationDemo";
+import * as CardDemo from "./demos/CardDemo";
+import * as BadgeDemo from "./demos/BadgeDemo";
+import * as TagDemo from "./demos/TagDemo";
+import * as AvatarDemo from "./demos/AvatarDemo";
+import * as TableDemo from "./demos/TableDemo";
+import * as ProgressDemo from "./demos/ProgressDemo";
+import * as SkeletonDemo from "./demos/SkeletonDemo";
+import * as EmptyStateDemo from "./demos/EmptyStateDemo";
+import * as TooltipDemo from "./demos/TooltipDemo";
+import * as DialogDemo from "./demos/DialogDemo";
+import * as DropdownMenuDemo from "./demos/DropdownMenuDemo";
+import * as ToastDemo from "./demos/ToastDemo";
 
 const button: ComponentDoc = {
   id: "button",
@@ -719,6 +733,734 @@ const tabs: ComponentDoc = {
     "The tab list uses roving tabindex: one tab is in the tab order, ArrowLeft and ArrowRight move selection, Home and End jump to the ends, and disabled tabs are skipped with wrapping. The panel is labelled by its tab and is focusable.",
 };
 
+const breadcrumb: ComponentDoc = {
+  id: "breadcrumb",
+  name: "Breadcrumb",
+  group: "Navigation",
+  job: "Show depth inside the deck: collection, deck, card.",
+  Demo: BreadcrumbDemo.Demo,
+  Variants: BreadcrumbDemo.Variants,
+  States: BreadcrumbDemo.States,
+  props: [
+    {
+      name: "items",
+      type: "BreadcrumbItem[]",
+      default: "—",
+      description: "Label plus optional href; the last item is the current page.",
+    },
+    {
+      name: "collapsed",
+      type: "boolean",
+      default: "false",
+      description: "Keeps the first and last item and hides the middle behind an ellipsis.",
+    },
+    {
+      name: "label",
+      type: "string",
+      default: '"Breadcrumb"',
+      description: "Accessible name of the navigation landmark.",
+    },
+  ],
+  dos: [
+    "Keep the current page as plain text with aria-current, not a link to itself.",
+    "Collapse long trails at the middle and keep the deck and the current card.",
+  ],
+  donts: [
+    "Don't use a breadcrumb for a flat list of filters; use Tags.",
+    "Don't make the separator part of the link text.",
+  ],
+  a11y:
+    "The trail is a labelled nav with an ordered list. The final item is marked aria-current=\"page\" and separators are aria-hidden. A collapsed trail announces the number of hidden items to screen readers.",
+};
+
+const pagination: ComponentDoc = {
+  id: "pagination",
+  name: "Pagination",
+  group: "Navigation",
+  job: "Move through a long card list without losing the page context.",
+  Demo: PaginationDemo.Demo,
+  Variants: PaginationDemo.Variants,
+  States: PaginationDemo.States,
+  props: [
+    {
+      name: "page",
+      type: "number",
+      default: "—",
+      description: "The current page, one-based.",
+    },
+    {
+      name: "pageCount",
+      type: "number",
+      default: "—",
+      description: "Total pages. First and last are always reachable.",
+    },
+    {
+      name: "onPageChange",
+      type: "(page: number) => void",
+      default: "—",
+      description: "Runs from a page button or the previous/next controls.",
+    },
+    {
+      name: "variant",
+      type: '"numbered" | "compact"',
+      default: '"numbered"',
+      description: "Numbered pages for a table; compact for a narrow deck view.",
+    },
+    {
+      name: "size",
+      type: '"sm" | "md"',
+      default: '"md"',
+      description: "Control height; the numbered buttons stay circular.",
+    },
+  ],
+  dos: [
+    "Keep previous and next available at the boundaries as disabled controls.",
+    "Mark the current page with aria-current and a filled pill.",
+  ],
+  donts: [
+    "Don't hide the page count when the user is deep in a list.",
+    "Don't reset scroll without moving focus to the new page's first item.",
+  ],
+  a11y:
+    "Pagination is a labelled nav. Every page button has a name such as \"Page 3\"; the current page adds aria-current=\"page\". Disabled boundary controls stay visible so the range is legible.",
+};
+
+const card: ComponentDoc = {
+  id: "card",
+  name: "Card",
+  group: "Display",
+  job: "Show a deck or a study card as one collectable surface.",
+  Demo: CardDemo.Demo,
+  Variants: CardDemo.Variants,
+  States: CardDemo.States,
+  props: [
+    {
+      name: "variant",
+      type: '"flat" | "raised" | "interactive" | "selected"',
+      default: '"flat"',
+      description: "Surface depth and selection state.",
+    },
+    {
+      name: "size",
+      type: '"sm" | "md" | "lg"',
+      default: '"md"',
+      description: "Padding and internal rhythm.",
+    },
+    {
+      name: "interactive",
+      type: "boolean",
+      default: "false",
+      description: "Adds button semantics, Enter/Space activation and a focus ring.",
+    },
+    {
+      name: "onActivate",
+      type: "() => void",
+      default: "—",
+      description: "Runs when an interactive card is clicked or activated by key.",
+    },
+    {
+      name: "disabled",
+      type: "boolean",
+      default: "false",
+      description: "Keeps an interactive card visible but removes activation.",
+    },
+  ],
+  dos: [
+    "Use one interactive card per row when the whole surface opens a deck.",
+    "Keep the deck name, due count and recall in the same visual order.",
+  ],
+  donts: [
+    "Don't nest a button inside an interactive card without a clear target.",
+    "Don't use the selected border as the only selected cue; add a state label.",
+  ],
+  a11y:
+    "An interactive card is a keyboard-focusable button with Enter and Space activation; a disabled card keeps aria-disabled and leaves the tab order. The surface itself is not a link, so the action is explicit.",
+};
+
+const badge: ComponentDoc = {
+  id: "badge",
+  name: "Badge",
+  group: "Display",
+  job: "Mark a due count, recall figure or status without offering an action.",
+  Demo: BadgeDemo.Demo,
+  Variants: BadgeDemo.Variants,
+  States: BadgeDemo.States,
+  props: [
+    {
+      name: "variant",
+      type: '"neutral" | "accent" | "success" | "warning" | "danger"',
+      default: '"neutral"',
+      description: "Semantic tone; the label carries the meaning, not colour alone.",
+    },
+    {
+      name: "size",
+      type: '"sm" | "md"',
+      default: '"md"',
+      description: "Type and padding step.",
+    },
+    {
+      name: "children",
+      type: "ReactNode",
+      default: "—",
+      description: "The value or status: 142 due, 98% recall, Archived.",
+    },
+  ],
+  dos: [
+    "Write the count into the badge so it survives a greyscale print.",
+    "Keep neutral for archive and metadata, danger for failure only.",
+  ],
+  donts: [
+    "Don't put a dismiss control in a Badge; use a removable Tag.",
+    "Don't use a badge as a button.",
+  ],
+  a11y:
+    "A badge is static text with no role. Colour is never the only carrier: the visible label says 142 due, 98% recall or Sync failed. Tone pairs are chosen to clear AA on the dark panel.",
+};
+
+const tag: ComponentDoc = {
+  id: "tag",
+  name: "Tag",
+  group: "Display",
+  job: "Label a deck or act as a removable filter.",
+  Demo: TagDemo.Demo,
+  Variants: TagDemo.Variants,
+  States: TagDemo.States,
+  props: [
+    {
+      name: "variant",
+      type: '"static" | "removable"',
+      default: '"static"',
+      description: "Static label, or a tag with a remove control.",
+    },
+    {
+      name: "size",
+      type: '"sm" | "md"',
+      default: '"md"',
+      description: "Pill height and type step.",
+    },
+    {
+      name: "onRemove",
+      type: "() => void",
+      default: "—",
+      description: "Runs from the remove control; makes the tag removable.",
+    },
+    {
+      name: "removeLabel",
+      type: "string",
+      default: '"Remove tag"',
+      description: "Accessible name for the remove control, e.g. Remove Kanji N3.",
+    },
+    {
+      name: "disabled",
+      type: "boolean",
+      default: "false",
+      description: "Keeps the filter visible but removes the remove control.",
+    },
+  ],
+  dos: [
+    "Name the removed filter in the remove control: Remove Kanji N3.",
+    "Keep the tag text short enough to scan in a filter row.",
+  ],
+  donts: [
+    "Don't use a tag for a commit action such as Start session.",
+    "Don't remove the only indication that a filter is active.",
+  ],
+  a11y:
+    "The tag text is readable; the remove control is a button with an explicit accessible name such as \"Remove Kanji N3\". Disabled tags keep their label but remove the control from the tab order.",
+};
+
+const avatar: ComponentDoc = {
+  id: "avatar",
+  name: "Avatar",
+  group: "Display",
+  job: "Show a learner or deck owner, with initials when no portrait exists.",
+  Demo: AvatarDemo.Demo,
+  Variants: AvatarDemo.Variants,
+  States: AvatarDemo.States,
+  props: [
+    {
+      name: "name",
+      type: "string",
+      default: "—",
+      description: "The person's name; used for alt text, initials and the button label.",
+    },
+    {
+      name: "src",
+      type: "string",
+      default: "—",
+      description: "Optional portrait. A load failure falls back to initials.",
+    },
+    {
+      name: "size",
+      type: '"xs" | "sm" | "md" | "lg"',
+      default: '"md"',
+      description: "24, 32, 40 or 56 pixels.",
+    },
+    {
+      name: "interactive",
+      type: "boolean",
+      default: "false",
+      description: "Renders a real button with the person's name as its label.",
+    },
+    {
+      name: "onClick",
+      type: "() => void",
+      default: "—",
+      description: "Runs when an interactive avatar is activated.",
+    },
+  ],
+  dos: [
+    "Keep the height and width equal so initials never stretch the circle.",
+    "Use the name for both the image alternative and the initials fallback.",
+  ],
+  donts: [
+    "Don't use a decorative avatar as the only way to identify a person in text.",
+    "Don't place an interactive avatar inside another interactive surface.",
+  ],
+  a11y:
+    "A portrait uses the person's name as alt text. The initials fallback is role=\"img\" with the same name. An interactive avatar is a button with that name and the dual-band focus ring.",
+};
+
+const table: ComponentDoc = {
+  id: "table",
+  name: "Table",
+  group: "Display",
+  job: "Show study history and card lists with sortable columns and row selection.",
+  Demo: TableDemo.Demo,
+  Variants: TableDemo.Variants,
+  States: TableDemo.States,
+  props: [
+    {
+      name: "columns",
+      type: "TableColumn[]",
+      default: "—",
+      description: "Key, header, optional sortable and alignment.",
+    },
+    {
+      name: "rows",
+      type: "TableRow[]",
+      default: "—",
+      description: "Records of cell content keyed by column.",
+    },
+    {
+      name: "getRowId",
+      type: "(row, index) => string",
+      default: "—",
+      description: "Stable id for selection and hover previews.",
+    },
+    {
+      name: "getRowLabel",
+      type: "(row, index) => string",
+      default: "row id",
+      description: "Names the row in the selection checkbox.",
+    },
+    {
+      name: "sort / onSortChange",
+      type: "TableSort | null / (sort) => void",
+      default: "null",
+      description: "Controlled sort state; the parent owns the row order.",
+    },
+    {
+      name: "selectable / selectedIds / onSelectionChange",
+      type: "boolean / string[] / (ids) => void",
+      default: "false / —",
+      description: "Row checkboxes with a select-all header.",
+    },
+    {
+      name: "loading",
+      type: "boolean",
+      default: "false",
+      description: "Sets aria-busy and renders skeleton rows.",
+    },
+    {
+      name: "emptyMessage",
+      type: "string",
+      default: '"No cards to show."',
+      description: "Shown when the row set is empty and not loading.",
+    },
+  ],
+  dos: [
+    "Keep the row order owned by the caller so sort and filter agree.",
+    "Use a real caption, even when it is visually hidden.",
+  ],
+  donts: [
+    "Don't sort a column without announcing the direction with aria-sort.",
+    "Don't put an action menu behind a row click that also selects the row.",
+  ],
+  a11y:
+    "The table uses a caption, scope=\"col\" headers and aria-sort on sortable columns. Every row checkbox is named for its card, the header checkbox reports indeterminate, and loading sets aria-busy. The table scrolls inside its own box.",
+};
+
+const progress: ComponentDoc = {
+  id: "progress",
+  name: "Progress",
+  group: "Display",
+  job: "Show session recall, daily goal or sync progress.",
+  Demo: ProgressDemo.Demo,
+  Variants: ProgressDemo.Variants,
+  States: ProgressDemo.States,
+  props: [
+    {
+      name: "label",
+      type: "string",
+      default: "—",
+      description: "Visible label and accessible name of the progressbar.",
+    },
+    {
+      name: "value",
+      type: "number",
+      default: "0",
+      description: "Zero to one hundred; ignored visually when indeterminate.",
+    },
+    {
+      name: "variant",
+      type: '"bar" | "ring"',
+      default: '"bar"',
+      description: "A bar for a goal, a ring for a session figure.",
+    },
+    {
+      name: "size",
+      type: '"sm" | "md" | "lg"',
+      default: '"md"',
+      description: "Track height or ring diameter.",
+    },
+    {
+      name: "indeterminate",
+      type: "boolean",
+      default: "false",
+      description: "Loading state with no numeric value.",
+    },
+    {
+      name: "showValue",
+      type: "boolean",
+      default: "true",
+      description: "Shows the percentage beside the label.",
+    },
+  ],
+  dos: [
+    "Use determinate progress when the total is known; 142 of 142.",
+    "Use the ring for a single session figure and the bar for a goal.",
+  ],
+  donts: [
+    "Don't set aria-valuenow on an indeterminate progressbar.",
+    "Don't animate the fill forever when the value is known.",
+  ],
+  a11y:
+    "The control is role=\"progressbar\" with min 0 and max 100. aria-valuenow appears only when determinate; an indeterminate bar omits it by design. Both animations stop under reduced motion.",
+};
+
+const skeleton: ComponentDoc = {
+  id: "skeleton",
+  name: "Skeleton",
+  group: "Display",
+  job: "Hold the shape of a deck or a card while it loads.",
+  Demo: SkeletonDemo.Demo,
+  Variants: SkeletonDemo.Variants,
+  States: SkeletonDemo.States,
+  props: [
+    {
+      name: "variant",
+      type: '"text" | "block" | "circle"',
+      default: '"text"',
+      description: "Line, block or avatar-shaped placeholder.",
+    },
+    {
+      name: "size",
+      type: '"sm" | "md"',
+      default: '"md"',
+      description: "Height and circle diameter.",
+    },
+    {
+      name: "lines",
+      type: "number",
+      default: "1",
+      description: "Number of text lines; the last line is shorter.",
+    },
+    {
+      name: "width",
+      type: "string",
+      default: "100%",
+      description: "One-off width for a text line.",
+    },
+    {
+      name: "animated",
+      type: "boolean",
+      default: "true",
+      description: "Set false for a static placeholder; reduced motion also stops the shimmer.",
+    },
+  ],
+  dos: [
+    "Match the skeleton to the real layout so content does not jump when it arrives.",
+    "Pair the skeleton with a status message or a busy region elsewhere.",
+  ],
+  donts: [
+    "Don't expose a skeleton to assistive technology as content.",
+    "Don't use a skeleton for a long wait you could name.",
+  ],
+  a11y:
+    "Every skeleton is aria-hidden. It is a visual placeholder only; loading state must be announced by a status region or aria-busy on the region that owns the content. Under reduced motion the shimmer becomes a static tint.",
+};
+
+const emptyState: ComponentDoc = {
+  id: "empty-state",
+  name: "EmptyState",
+  group: "Display",
+  job: "Explain an empty deck or a search with no results and offer one next step.",
+  Demo: EmptyStateDemo.Demo,
+  Variants: EmptyStateDemo.Variants,
+  States: EmptyStateDemo.States,
+  props: [
+    {
+      name: "title",
+      type: "string",
+      default: "—",
+      description: "Names the empty condition, not the absence of a component.",
+    },
+    {
+      name: "description",
+      type: "string",
+      default: "—",
+      description: "What happened and when the next review is.",
+    },
+    {
+      name: "action",
+      type: "ReactNode",
+      default: "—",
+      description: "One real button or link; omit when there is no useful next step.",
+    },
+  ],
+  dos: [
+    "Use a specific title: No cards due, not Nothing here.",
+    "Offer one next step that fits the condition.",
+  ],
+  donts: [
+    "Don't stack two actions in an empty state.",
+    "Don't use an empty state for an error; say what failed and how to retry.",
+  ],
+  a11y:
+    "The title is a heading so it lands in the page outline. The action is a real button or link. The seigaiha mark is decorative and hidden from assistive technology.",
+};
+
+const tooltip: ComponentDoc = {
+  id: "tooltip",
+  name: "Tooltip",
+  group: "Overlay",
+  job: "Explain an icon or a shortened label without taking focus.",
+  Demo: TooltipDemo.Demo,
+  Variants: TooltipDemo.Variants,
+  States: TooltipDemo.States,
+  props: [
+    {
+      name: "label",
+      type: "string",
+      default: "—",
+      description: "The explanation; it also becomes the description of the trigger.",
+    },
+    {
+      name: "children",
+      type: "ReactElement",
+      default: "—",
+      description: "The trigger element; focus and hover travel through it.",
+    },
+    {
+      name: "placement",
+      type: '"top" | "bottom" | "left" | "right"',
+      default: '"top"',
+      description: "Where the tooltip sits relative to the trigger.",
+    },
+    {
+      name: "size",
+      type: '"sm"',
+      default: '"sm"',
+      description: "Type and padding step.",
+    },
+  ],
+  dos: [
+    "Use a tooltip to explain an icon whose label is already present.",
+    "Keep the text short; a tooltip is not a help panel.",
+  ],
+  donts: [
+    "Don't put interactive content inside a tooltip.",
+    "Don't make a tooltip the only way to learn a required control's name.",
+  ],
+  a11y:
+    "The trigger receives aria-describedby while the tooltip is visible. Hover and focus both open it; Escape dismisses it without moving focus, and the next focus reopens it. The tooltip is never focusable.",
+};
+
+const dialog: ComponentDoc = {
+  id: "dialog",
+  name: "Dialog",
+  group: "Overlay",
+  job: "Confirm a destructive action or rename a deck without leaving the page.",
+  Demo: DialogDemo.Demo,
+  Variants: DialogDemo.Variants,
+  States: DialogDemo.States,
+  props: [
+    {
+      name: "open",
+      type: "boolean",
+      default: "false",
+      description: "Controlled visibility; the trigger owns the state.",
+    },
+    {
+      name: "onClose",
+      type: "() => void",
+      default: "—",
+      description: "Escape, the close control and the scrim call it.",
+    },
+    {
+      name: "title",
+      type: "string",
+      default: "—",
+      description: "The accessible name of the dialog.",
+    },
+    {
+      name: "description",
+      type: "string",
+      default: "—",
+      description: "The consequence; linked with aria-describedby.",
+    },
+    {
+      name: "footer",
+      type: "ReactNode",
+      default: "—",
+      description: "Usually a secondary cancel and one primary or danger action.",
+    },
+    {
+      name: "size",
+      type: '"sm" | "md"',
+      default: '"md"',
+      description: "24rem or 34rem maximum width.",
+    },
+    {
+      name: "closeLabel",
+      type: "string",
+      default: '"Close dialog"',
+      description: "Accessible name of the close control.",
+    },
+  ],
+  dos: [
+    "Name the object and the consequence in the title and description.",
+    "Keep the trigger mounted so focus can return to it.",
+  ],
+  donts: [
+    "Don't stack a second dialog on top of the first.",
+    "Don't use a dialog for a short confirmation that a toast can carry.",
+  ],
+  a11y:
+    "The dialog is role=\"dialog\" with aria-modal and a labelled title. Focus moves to the first control, Tab is trapped and wraps, Escape closes, body scroll locks, and focus returns to the trigger. The scrim closes on pointer down outside the surface.",
+};
+
+const dropdown: ComponentDoc = {
+  id: "dropdown-menu",
+  name: "DropdownMenu",
+  group: "Overlay",
+  job: "Hold row actions: edit, duplicate, archive, delete.",
+  Demo: DropdownMenuDemo.Demo,
+  Variants: DropdownMenuDemo.Variants,
+  States: DropdownMenuDemo.States,
+  props: [
+    {
+      name: "label",
+      type: "string",
+      default: "—",
+      description: "Accessible name of the icon trigger and the menu.",
+    },
+    {
+      name: "items",
+      type: "DropdownMenuItem[]",
+      default: "—",
+      description: "Label, callback, disabled, danger and separator flags.",
+    },
+    {
+      name: "align",
+      type: '"start" | "end"',
+      default: '"end"',
+      description: "Which edge of the trigger the menu aligns to.",
+    },
+    {
+      name: "open / defaultOpen / onOpenChange",
+      type: "boolean / boolean / (open) => void",
+      default: "false",
+      description: "Controlled or uncontrolled visibility for tests and specimens.",
+    },
+  ],
+  dos: [
+    "Use a menu for three or more related actions; two can stay inline.",
+    "Put the destructive item last, after a separator, in danger colour.",
+  ],
+  donts: [
+    "Don't put a form field inside a dropdown menu.",
+    "Don't use a menu for navigation; use links.",
+  ],
+  a11y:
+    "The trigger is a button with aria-haspopup=\"menu\" and aria-expanded. Opening focuses the first item; ArrowDown and ArrowUp move, Home and End jump, disabled items are skipped, Escape closes and returns focus to the trigger. Selection also returns focus.",
+};
+
+const toast: ComponentDoc = {
+  id: "toast",
+  name: "Toast",
+  group: "Overlay",
+  job: "Confirm a save or report a failed sync without interrupting the study flow.",
+  Demo: ToastDemo.Demo,
+  Variants: ToastDemo.Variants,
+  States: ToastDemo.States,
+  props: [
+    {
+      name: "open",
+      type: "boolean",
+      default: "false",
+      description: "Controlled visibility; the caller owns the queue.",
+    },
+    {
+      name: "message",
+      type: "ReactNode",
+      default: "—",
+      description: "What happened, in one sentence.",
+    },
+    {
+      name: "variant",
+      type: '"success" | "danger" | "info"',
+      default: '"info"',
+      description: "Tone and icon; danger is a failed sync, not a validation error.",
+    },
+    {
+      name: "onDismiss",
+      type: "() => void",
+      default: "—",
+      description: "Runs from the dismiss control or the auto-dismiss timer.",
+    },
+    {
+      name: "duration",
+      type: "number",
+      default: "6000",
+      description: "Auto-dismiss delay in milliseconds; zero keeps it open.",
+    },
+    {
+      name: "paused",
+      type: "boolean",
+      default: "false",
+      description: "Freezes the timer; hover and focus also pause it.",
+    },
+    {
+      name: "action",
+      type: "ReactNode",
+      default: "—",
+      description: "One optional action such as Undo.",
+    },
+  ],
+  dos: [
+    "Keep the toast to one sentence and one optional action.",
+    "Let hover and focus pause the timer; the user is reading it.",
+  ],
+  donts: [
+    "Don't use a toast for an error that needs a decision; use a dialog.",
+    "Don't stack more than three toasts.",
+  ],
+  a11y:
+    "The toast is role=\"status\" with aria-live=\"polite\". Hover and focus pause the timer, the dismiss control is named \"Dismiss notification\", and the message never takes focus away from the card being studied.",
+};
+
 export const componentGroups: ComponentGroup[] = [
   { id: "actions", label: "Actions", items: [button, iconButton, link] },
   {
@@ -738,7 +1480,26 @@ export const componentGroups: ComponentGroup[] = [
   {
     id: "navigation",
     label: "Navigation",
-    items: [segmentedControl, tabs],
+    items: [segmentedControl, tabs, breadcrumb, pagination],
+  },
+  {
+    id: "display",
+    label: "Display",
+    items: [
+      card,
+      badge,
+      tag,
+      avatar,
+      table,
+      progress,
+      skeleton,
+      emptyState,
+    ],
+  },
+  {
+    id: "overlay",
+    label: "Overlay",
+    items: [tooltip, dialog, dropdown, toast],
   },
 ];
 

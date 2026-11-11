@@ -1,0 +1,62 @@
+.root {
+  position: relative;
+  display: inline-flex;
+}
+
+.tooltip {
+  position: absolute;
+  z-index: 1200;
+  width: max-content;
+  max-width: 16rem;
+  padding: var(--space-2) var(--space-3);
+  border: 1px solid var(--color-border-strong);
+  border-radius: var(--radius-1);
+  background: rgb(10 7 34 / 0.98);
+  color: var(--cream);
+  font-family: var(--font-text);
+  font-size: var(--text-xs);
+  line-height: 1.4;
+  box-shadow: var(--shadow-1);
+  pointer-events: none;
+  animation: appear var(--dur-1) var(--ease-standard);
+}
+
+.sm {
+  font-size: var(--text-xs);
+}
+
+.top {
+  inset-block-end: calc(100% + 0.5rem);
+  inset-inline-start: 50%;
+  translate: -50% 0;
+}
+
+.bottom {
+  inset-block-start: calc(100% + 0.5rem);
+  inset-inline-start: 50%;
+  translate: -50% 0;
+}
+
+.left {
+  inset-inline-end: calc(100% + 0.5rem);
+  inset-block-start: 50%;
+  translate: 0 -50%;
+}
+
+.right {
+  inset-inline-start: calc(100% + 0.5rem);
+  inset-block-start: 50%;
+  translate: 0 -50%;
+}
+
+@keyframes appear {
+  from {
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tooltip {
+    animation: none;
+  }
+}

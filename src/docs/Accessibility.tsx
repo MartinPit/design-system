@@ -12,10 +12,11 @@ export function AccessibilityPage() {
       />
 
       <Section title="Status">
-        <Note label="Phase A">
-          The rules and fallbacks are implemented and visible below. A full audit
-          — automated axe pass, keyboard walkthrough of every specimen and a
-          documented contrast table — closes this page in Phase B.
+        <Note label="Audited 2026.11">
+          The final pass ran axe-core over all 36 routes at 360, 768, 1024 and
+          1440: 144 page/viewport pairs, zero violations. The keyboard walkthrough
+          covered Dialog, DropdownMenu, Tooltip, Tabs, Toast and Select. The rules
+          and fallbacks below are the ones implemented in the built page.
         </Note>
       </Section>
 
@@ -127,6 +128,152 @@ export function AccessibilityPage() {
             <li>
               <code>forced-colors: active</code> drops the ground to Canvas,
               uses CanvasText and keeps a 3px Highlight focus outline.
+            </li>
+          </ul>
+        </Prose>
+      </Section>
+
+      <Section
+        title="Glass limits"
+        lead="Glass is a material, not a licence to put type anywhere."
+      >
+        <Prose>
+          <ul>
+            <li>
+              <strong>L1</strong> is 6% white with a 12px blur and a 1px edge;
+              <strong> L2</strong> is 12% white with an 18px blur and an inset
+              highlight. Raised panels use the 28px radius.
+            </li>
+            <li>
+              Cream text may sit on glass only when the glass is over violet or
+              darker ground. Glass over periwinkle, cyan or mint is for
+              ornament, not body copy.
+            </li>
+            <li>
+              Overlays never trust the ground: Dialog, DropdownMenu and Toast
+              use opaque <code>--abyss</code> surfaces; Tooltip is near-opaque
+              abyss. A scrim at <code>rgb(10 7 34 / 0.55)</code> carries the
+              dialog backdrop.
+            </li>
+            <li>
+              When <code>backdrop-filter</code> is unsupported the opaque
+              gradient fallback replaces the glass; the information and the
+              contrast do not change.
+            </li>
+          </ul>
+        </Prose>
+      </Section>
+
+      <Section
+        title="Keyboard trace"
+        lead="The five interaction models that are easiest to get wrong."
+      >
+        {/* eslint-disable-next-line jsx-a11y/no-noninteractive-tabindex -- a scroll container must be reachable by keyboard */}
+        <div tabIndex={0} className={styles.traceWrap}>
+          <table className={styles.trace}>
+            <thead>
+              <tr>
+                <th scope="col">Pattern</th>
+                <th scope="col">Keys</th>
+                <th scope="col">Expected</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">Dialog</th>
+                <td>
+                  <kbd>Tab</kbd> / <kbd>Shift</kbd>+<kbd>Tab</kbd>
+                  <br />
+                  <kbd>Escape</kbd>
+                </td>
+                <td>
+                  Cycle inside the dialog and wrap at both ends. Escape closes
+                  and returns focus to the trigger.
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">DropdownMenu</th>
+                <td>
+                  <kbd>↓</kbd> <kbd>↑</kbd> <kbd>Home</kbd> <kbd>End</kbd>
+                  <br />
+                  <kbd>Enter</kbd> / <kbd>Space</kbd> / <kbd>Escape</kbd>
+                </td>
+                <td>
+                  Move between enabled items, skipping disabled ones. Selection
+                  closes the menu; Escape closes and returns focus to the
+                  trigger.
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">Tooltip</th>
+                <td>
+                  <kbd>Tab</kbd> / hover
+                  <br />
+                  <kbd>Escape</kbd>
+                </td>
+                <td>
+                  Show on focus or hover and describe the trigger with
+                  aria-describedby. Escape dismisses without moving focus; focus
+                  again reopens it.
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">Tabs</th>
+                <td>
+                  <kbd>←</kbd> <kbd>→</kbd> <kbd>Home</kbd> <kbd>End</kbd>
+                </td>
+                <td>
+                  Roving tabindex: one tab in the tab order, arrows select and
+                  move focus, Home and End jump to the first and last enabled
+                  tabs, and the panel is labelled by its tab.
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">Toast</th>
+                <td>
+                  <kbd>Tab</kbd>
+                  <br />
+                  <kbd>Enter</kbd> / <kbd>Space</kbd>
+                </td>
+                <td>
+                  The dismiss control is reachable in order. Hover or focus
+                  pauses the timer; dismiss removes the status without moving
+                  the user away from the card.
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </Section>
+
+      <Section
+        title="Deliberate deviations from Card B"
+        lead="The card is a reference, not a screenshot to reproduce."
+      >
+        <Prose>
+          <ul>
+            <li>
+              The black wordmark becomes cream where it sits in the abyss zone;
+              black on the bright end would invert the card’s hierarchy.
+            </li>
+            <li>
+              Type never crosses the periwinkle or cyan middle without a scrim or
+              a dark panel. The card can be more decorative than a working page.
+            </li>
+            <li>
+              Glass stays at or below 12% white behind cream text. The card’s
+              specular bubbles are ornament; they are never the only boundary of
+              a control.
+            </li>
+            <li>
+              The seigaiha field is decorative, masked, pointer-transparent and
+              hidden from assistive technology. It appears at the header, the
+              sidebar edge, the system mark and empty states, never behind body
+              text.
+            </li>
+            <li>
+              The orb is aria-hidden ornament with one slow shimmer, not a
+              control. Reduced motion stops the shimmer and every hover lift.
             </li>
           </ul>
         </Prose>

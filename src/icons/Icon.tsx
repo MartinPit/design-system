@@ -5,10 +5,13 @@ export type IconName =
   | "close"
   | "chevron-down"
   | "chevron-right"
+  | "chevron-left"
   | "check"
   | "minus"
   | "arrow-right"
   | "arrow-up-right"
+  | "arrow-up"
+  | "arrow-down"
   | "shuffle"
   | "play"
   | "menu"
@@ -18,7 +21,10 @@ export type IconName =
   | "filter"
   | "keyboard"
   | "copy"
-  | "layers";
+  | "layers"
+  | "more-horizontal"
+  | "info"
+  | "alert";
 
 const paths: Record<IconName, ReactNode> = {
   search: (
@@ -35,6 +41,7 @@ const paths: Record<IconName, ReactNode> = {
   ),
   "chevron-down": <path d="m6 9 6 6 6-6" />,
   "chevron-right": <path d="m9 6 6 6-6 6" />,
+  "chevron-left": <path d="m15 6-6 6 6 6" />,
   check: <path d="m5 12.5 5 5L19 7" />,
   minus: <path d="M6 12h12" />,
   "arrow-right": (
@@ -47,6 +54,18 @@ const paths: Record<IconName, ReactNode> = {
     <>
       <path d="M7 17 17 7" />
       <path d="M8 7h9v9" />
+    </>
+  ),
+  "arrow-up": (
+    <>
+      <path d="M12 20V4" />
+      <path d="m6 10 6-6 6 6" />
+    </>
+  ),
+  "arrow-down": (
+    <>
+      <path d="M12 4v16" />
+      <path d="m6 14 6 6 6-6" />
     </>
   ),
   shuffle: (
@@ -96,6 +115,27 @@ const paths: Record<IconName, ReactNode> = {
     <>
       <path d="m12 3 9 5-9 5-9-5 9-5Z" />
       <path d="m3 13 9 5 9-5" />
+    </>
+  ),
+  "more-horizontal": (
+    <>
+      <circle cx="5" cy="12" r="1" />
+      <circle cx="12" cy="12" r="1" />
+      <circle cx="19" cy="12" r="1" />
+    </>
+  ),
+  info: (
+    <>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M12 11v5" />
+      <path d="M12 8h.01" />
+    </>
+  ),
+  alert: (
+    <>
+      <path d="M12 3 22 20H2L12 3Z" />
+      <path d="M12 9v5" />
+      <path d="M12 17h.01" />
     </>
   ),
 };

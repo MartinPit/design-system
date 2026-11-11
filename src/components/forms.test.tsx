@@ -49,6 +49,22 @@ describe("Select", () => {
 
     expect(screen.getByLabelText("Deck")).toHaveValue("spanish");
   });
+
+  it("is reachable by keyboard and keeps the native select model", async () => {
+    const user = userEvent.setup();
+    render(
+      <Select label="Deck" defaultValue="kanji">
+        <option value="kanji">Kanji N3</option>
+        <option value="spanish">Spanish Verbs</option>
+      </Select>,
+    );
+
+    await user.tab();
+    const select = screen.getByLabelText("Deck");
+    expect(select).toHaveFocus();
+    expect(select.tagName).toBe("SELECT");
+    expect(select).not.toHaveAttribute("aria-describedby");
+  });
 });
 
 describe("Checkbox", () => {

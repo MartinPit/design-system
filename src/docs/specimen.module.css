@@ -80,6 +80,7 @@
   margin: 0;
   display: grid;
   gap: var(--space-2);
+  min-width: 0;
 }
 
 .stateLabel {
@@ -94,6 +95,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  min-width: 0;
   min-height: 5.25rem;
   padding: var(--space-3);
   border: 1px solid rgb(247 242 230 / 0.09);
