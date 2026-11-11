@@ -2,11 +2,11 @@
 id: "07"
 title: Decide the code architecture for each branch
 labels: [wayfinder:grilling]
-status: open
-assignee: null
+status: closed
+assignee: thinker (implementation session)
 blocked-by: []
 created: 2026-11-11
-closed: null
+closed: 2026-11-11
 ---
 
 ## Question
@@ -28,3 +28,37 @@ Decide, with the human:
 ## Resolution shape
 
 One short architecture decision per bullet, including the rejected options and why, plus the folder tree for each branch. This ticket unblocks both build tickets.
+
+## Resolution — 2026-11-11
+
+Decided by the implementer; the human may overturn any line. Both branches use the same engineering skeleton but not the same visual tokens.
+
+- **Stack:** Vite + React 19 + TypeScript strict. Node 26 is installed; npm 11.
+- **Styling:** **CSS Modules per component + one global `tokens.css`**. Rejected: Tailwind (token indirection fights the docs swatch reader), vanilla-extract (extra build layer for two short-lived branches), styled-components (runtime cost, no benefit here).
+- **Tokens:** `src/styles/tokens.css` is the single source of truth. The docs read live values with `getComputedStyle(document.documentElement).getPropertyValue(...)` so a swatch can never lie. Component styles consume only `var(--…)`.
+- **Component API:** plain function components; `forwardRef` on every focusable control; `variant` and `size` string unions; `className` appended, not replaced; `...rest` spread onto the native element; `aria-*` passed through untouched. No polymorphic `as` — keep the surface small.
+- **Docs registry:** `src/docs/registry.tsx` exports ordered groups. Each entry: `{ id, name, job, Demo, variants, states, props, dos, donts, a11y }`. Demos live in `src/docs/demos/<Name>Demo.tsx`. The sidebar, routes and page all derive from this file.
+- **Icons:** inline SVG components in `src/components/Icon/`, 1.5px stroke, `currentColor`; no icon dependency.
+- **Accessibility tooling:** `eslint-plugin-jsx-a11y`, a visible `:focus-visible` baseline in `base.css`, skip link, landmark structure. No axe runtime overlay — the verification ticket runs axe against the built page.
+- **Testing floor:** Vitest + React Testing Library. Smoke/render test for every component plus keyboard assertions for Dialog (trap + return focus), Tabs (arrow keys), Switch (space/enter), Select (keyboard), Toast (dismiss). `npm run verify` = `lint && typecheck && test && build`.
+- **Routing:** a 30-line hash-route hook; no react-router.
+- **Folder tree (each branch):**
+
+```
+index.html
+package.json
+tsconfig.json
+vite.config.ts
+eslint.config.js
+README.md
+src/
+  main.tsx
+  App.tsx
+  styles/{tokens.css,base.css}
+  components/<Name>/{<Name>.tsx,<Name>.module.css,index.ts}
+  docs/{registry.tsx,Shell.tsx,tokenData.ts,routes.tsx,Page...}
+  docs/demos/<Name>Demo.tsx
+  icons/<Name>.tsx
+```
+
+- **Branch hygiene:** each branch is standalone, no cross-branch imports, no monorepo. `README.md` names the system, its card, character, commands, and the AA deviations.

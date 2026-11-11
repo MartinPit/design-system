@@ -31,6 +31,12 @@ A branch reaches the end when it holds a Vite + React + TypeScript project with 
 <!-- one line per closed ticket: name, gist, link to the ticket file -->
 
 - [Deconstruct the Arcana card's visual references](tickets/01-arcana-card-references.md): Marlin Soft SQ is commercial, so Arcana substitutes an OFL grotesque; the gradient is two fields, and four palette values buy AA.
+- [Deconstruct the Tidal card's visual references](tickets/02-tidal-card-references.md): seigaiha is a stroke-only masked tile, the ground is one linear plus three blooms with an abyss text zone, and glass is enhancement only.
+- [Decide the component inventory and documented states](tickets/03-component-inventory.md): 27 required components in five groups, each with variants, sizes, states, and a documentation contract.
+- [Decide the Arcana visual language](tickets/04-arcana-visual-language.md): cream/ink archive palette with four text-safe accent values, a grotesque + mono pairing, zero-radius keylines, and one gradient form per viewport.
+- [Decide the Tidal visual language](tickets/05-tidal-visual-language.md): an iridescent 6-stop ground with an abyss text zone, a masked seigaiha at 3.5rem, four glass levels, and a Didone display face.
+- [Decide the documentation page architecture](tickets/06-docs-page-architecture.md): hash-routed docs shell, seven foundation pages, 27 component pages on one contract, responsive at 360–1440.
+- [Decide the code architecture for each branch](tickets/07-code-architecture.md): Vite + React 19 + TS strict, CSS Modules over a tokens.css source of truth, a registry-driven docs app, Vitest floor.
 
 ## Not yet specified
 
