@@ -145,6 +145,10 @@
   background: var(--paper-1);
 }
 
+.gridWide {
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+}
+
 .cell {
   display: flex;
   flex-direction: column;

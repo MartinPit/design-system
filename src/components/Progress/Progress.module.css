@@ -1,0 +1,155 @@
+.root {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  min-width: 0;
+}
+
+.head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-4);
+}
+
+.label {
+  font-family: var(--font-label);
+  font-size: var(--text-2xs);
+  font-weight: 500;
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  color: var(--color-text);
+}
+
+.value {
+  font-family: var(--font-label);
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.track {
+  position: relative;
+  color: var(--ink-700);
+}
+
+.barSm,
+.barMd,
+.barLg {
+  width: 100%;
+  height: 4px;
+  border: 1px solid var(--paper-3);
+  background: var(--paper-3);
+  overflow: hidden;
+}
+
+.barMd {
+  height: 6px;
+}
+
+.barLg {
+  height: 10px;
+}
+
+.fill {
+  display: block;
+  height: 100%;
+  background: var(--ink-700);
+  transition: width var(--dur-2) var(--ease-standard);
+}
+
+.track[data-complete] .fill {
+  background: var(--success);
+}
+
+.track[data-complete] {
+  color: var(--success);
+}
+
+.indeterminate .fill {
+  width: 35%;
+  animation: progress-slide 1.2s var(--ease-standard) infinite;
+}
+
+.ringSm,
+.ringMd,
+.ringLg {
+  display: inline-flex;
+  flex: none;
+}
+
+.ringSm {
+  width: 48px;
+  height: 48px;
+}
+
+.ringMd {
+  width: 64px;
+  height: 64px;
+}
+
+.ringLg {
+  width: 80px;
+  height: 80px;
+}
+
+.ringFrame {
+  position: relative;
+  display: inline-flex;
+  width: 100%;
+  height: 100%;
+}
+
+.ring {
+  width: 100%;
+  height: 100%;
+}
+
+.ring circle:last-child {
+  transition: stroke-dashoffset var(--dur-2) var(--ease-standard);
+}
+
+.indeterminate .ring circle:last-child {
+  animation: ring-spin 1.1s linear infinite;
+  transform-origin: 50% 50%;
+}
+
+.ringValue {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-label);
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+}
+
+@keyframes progress-slide {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(300%);
+  }
+}
+
+@keyframes ring-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .indeterminate .fill {
+    width: 100%;
+    animation: none;
+    opacity: 0.45;
+  }
+
+  .indeterminate .ring circle:last-child {
+    animation: none;
+    stroke-dasharray: 160;
+    stroke-dashoffset: 100;
+  }
+}

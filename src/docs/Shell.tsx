@@ -1,4 +1,4 @@
-import { useState, type ReactNode } from "react";
+import { useEffect, useRef, useState, type ReactNode } from "react";
 import { cx } from "../lib/cx";
 import {
   foundationPages,
@@ -54,9 +54,22 @@ export function Shell({
   children: ReactNode;
 }) {
   const [openFor, setOpenFor] = useState<string | null>(null);
+  const sidebar = useRef<HTMLElement>(null);
   const current = activeHref(route);
   const railOpen = openFor === current;
   const close = () => setOpenFor(null);
+
+  useEffect(() => {
+    const node = sidebar.current;
+    if (!node) return;
+    const active = node.querySelector<HTMLElement>('[aria-current="page"]');
+    if (!active) return;
+    const navBox = node.getBoundingClientRect();
+    const activeBox = active.getBoundingClientRect();
+    if (activeBox.top < navBox.top || activeBox.bottom > navBox.bottom) {
+      node.scrollTop += activeBox.top - navBox.top - 16;
+    }
+  }, [current, railOpen]);
 
   return (
     <div className={styles.shell}>
@@ -86,15 +99,19 @@ export function Shell({
               <span className={styles.seedName}>Card A</span>
               <Redactions count={3} />
             </span>
-            <a className={styles.indexLink} href="../">
+            <span
+              className={styles.indexLink}
+              title="The design index lives on the main branch"
+            >
               <span aria-hidden="true">←</span> Design index
-            </a>
+            </span>
           </div>
         </div>
       </header>
 
       <div className={styles.layout}>
         <aside
+          ref={sidebar}
           className={styles.sidebar}
           data-open={railOpen ? "true" : undefined}
         >
@@ -169,7 +186,7 @@ export function Shell({
               <ul className={styles.navList}>
                 <NavLink
                   href={routes.accessibility}
-                  index="21"
+                  index={String(components.length + 8).padStart(2, "0")}
                   name="Accessibility"
                   current={current === routes.accessibility}
                   onNavigate={close}
@@ -203,7 +220,7 @@ export function Shell({
           </div>
           <div>
             <p className={styles.footerLabel}>Build</p>
-            <p>Built 2026 · v1.0 · Phase A</p>
+            <p>Built 2026 · v1.0 · Phase B</p>
           </div>
         </div>
       </footer>

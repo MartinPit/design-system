@@ -1,6 +1,8 @@
-import { useId, type ReactNode, type SVGProps } from "react";
+import { useId, type ReactNode } from "react";
 import { cx } from "../lib/cx";
 import styles from "./ui.module.css";
+
+export { GradientForm } from "../components/GradientForm";
 
 export function Page({ children }: { children: ReactNode }) {
   return <div className={styles.page}>{children}</div>;
@@ -76,8 +78,16 @@ export function Stage({
   );
 }
 
-export function SpecimenGrid({ children }: { children: ReactNode }) {
-  return <div className={styles.grid}>{children}</div>;
+export function SpecimenGrid({
+  children,
+  wide = false,
+}: {
+  children: ReactNode;
+  wide?: boolean;
+}) {
+  return (
+    <div className={cx(styles.grid, wide && styles.gridWide)}>{children}</div>
+  );
 }
 
 export function Specimen({
@@ -112,7 +122,13 @@ export function PropsTable({
   caption: string;
 }) {
   return (
-    <div className={styles.tableScroll}>
+    <div
+      className={styles.tableScroll}
+      role="region"
+      aria-label={`${caption}, scrollable`}
+      // eslint-disable-next-line jsx-a11y/no-noninteractive-tabindex -- horizontal scroll must be keyboard reachable
+      tabIndex={0}
+    >
       <table className={styles.table}>
         <caption className={styles.caption}>{caption}</caption>
         <thead>
@@ -244,47 +260,6 @@ export function Redactions({ count = 5 }: { count?: number }) {
         <span key={index} className={styles.redaction} />
       ))}
     </span>
-  );
-}
-
-export function GradientForm({
-  className,
-  ...rest
-}: SVGProps<SVGSVGElement>) {
-  const uid = useId().replace(/[^a-zA-Z0-9_-]/g, "");
-  const linear = `grad-linear-${uid}`;
-  const bloom = `grad-bloom-${uid}`;
-
-  return (
-    <svg
-      viewBox="0 0 100 80"
-      className={className}
-      aria-hidden="true"
-      focusable="false"
-      {...rest}
-    >
-      <defs>
-        <linearGradient id={linear} x1="0" y1="0" x2="0.914" y2="0.407">
-          <stop offset="0" stopColor="var(--grad-amber)" />
-          <stop offset="0.28" stopColor="var(--grad-orange)" />
-          <stop offset="0.55" stopColor="var(--grad-magenta)" />
-          <stop offset="1" stopColor="var(--grad-crimson)" />
-        </linearGradient>
-        <radialGradient id={bloom} cx="14%" cy="86%" r="72%">
-          <stop offset="0" stopColor="var(--grad-violet)" stopOpacity="0.92" />
-          <stop offset="0.55" stopColor="var(--grad-magenta)" stopOpacity="0.55" />
-          <stop offset="1" stopColor="var(--grad-magenta)" stopOpacity="0" />
-        </radialGradient>
-      </defs>
-      <path
-        d="M0 0H30C56 0 84 8 96 30C100 47 90 61 72 68C51 76 30 79 16 74C8 71 3 67 0 61Z"
-        fill={`url(#${linear})`}
-      />
-      <path
-        d="M0 0H30C56 0 84 8 96 30C100 47 90 61 72 68C51 76 30 79 16 74C8 71 3 67 0 61Z"
-        fill={`url(#${bloom})`}
-      />
-    </svg>
   );
 }
 

@@ -14,6 +14,7 @@ import {
 export function ComponentPage({ spec }: { spec: ComponentSpec }) {
   const position = components.findIndex((item) => item.id === spec.id) + 1;
   const sheet = `${String(position).padStart(2, "0")} / ${spec.group.toUpperCase()}`;
+  const wide = spec.wide ?? spec.group === "Forms";
   const Demo = spec.Demo;
 
   return (
@@ -22,7 +23,7 @@ export function ComponentPage({ spec }: { spec: ComponentSpec }) {
         eyebrow={`Arcana / Components / ${spec.group}`}
         title={spec.name}
         job={spec.job}
-        sheet={`Sheet ${String(position).padStart(2, "0")}\n${spec.group} · Phase A`}
+        sheet={`Sheet ${String(position).padStart(2, "0")}\n${spec.group} · v1.0`}
       />
 
       <Section index="01" title="Live demo" note="Interactive">
@@ -36,9 +37,9 @@ export function ComponentPage({ spec }: { spec: ComponentSpec }) {
         title="Variants"
         note={`${spec.variants.length} specimens`}
       >
-        <SpecimenGrid>
+        <SpecimenGrid wide={spec.wide}>
           {spec.variants.map((item) => (
-            <Specimen key={item.label} label={item.label} wide={spec.group === "Forms"}>
+            <Specimen key={item.label} label={item.label} wide={wide}>
               {item.content}
             </Specimen>
           ))}
@@ -48,11 +49,11 @@ export function ComponentPage({ spec }: { spec: ComponentSpec }) {
       <Section
         index="03"
         title="States"
-        note="Forced for inspection"
+        note={spec.statesNote ?? "Forced for inspection"}
       >
-        <SpecimenGrid>
+        <SpecimenGrid wide={spec.wide}>
           {spec.states.map((item) => (
-            <Specimen key={item.label} label={item.label} wide={spec.group === "Forms"}>
+            <Specimen key={item.label} label={item.label} wide={wide}>
               {item.content}
             </Specimen>
           ))}

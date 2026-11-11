@@ -30,7 +30,8 @@
   background: var(--paper-2);
 }
 
-.group[data-state="hover"] .segment:first-child:not(:disabled) {
+.group[data-state="hover"]
+  .segment:first-child:not([aria-pressed="true"]):not(:disabled) {
   background: var(--paper-2);
 }
 

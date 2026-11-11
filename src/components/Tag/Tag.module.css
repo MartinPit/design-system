@@ -1,0 +1,77 @@
+.tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  max-width: 100%;
+  min-height: 28px;
+  border: 1px solid var(--rule-interactive);
+  border-radius: 0;
+  background: var(--paper-0);
+  color: var(--ink-700);
+  font-family: var(--font-label);
+  font-size: var(--text-2xs);
+  letter-spacing: 0.04em;
+  line-height: 1.4;
+  text-transform: uppercase;
+}
+
+.sm {
+  min-height: 24px;
+}
+
+.label {
+  min-width: 0;
+  padding: 2px var(--space-2);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.tag:hover,
+.tag[data-state="hover"] {
+  background: var(--paper-2);
+  border-color: var(--ink-700);
+}
+
+.tag[data-state="focus"] .remove {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 2px;
+}
+
+.remove {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--ink-700);
+  cursor: pointer;
+}
+
+.remove svg {
+  width: 0.75rem;
+  height: 0.75rem;
+}
+
+.remove:hover:not(:disabled) {
+  background: var(--lavender-200);
+}
+
+.remove:disabled {
+  cursor: not-allowed;
+}
+
+.disabled {
+  color: var(--ink-300);
+  border-color: var(--rule-ornament);
+  background: var(--paper-2);
+}
+
+.disabled:hover {
+  background: var(--paper-2);
+  border-color: var(--rule-ornament);
+}

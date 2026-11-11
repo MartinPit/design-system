@@ -1059,6 +1059,58 @@
   color: var(--ink-500);
 }
 
+.a11yRules dt a {
+  color: var(--ink-700);
+  text-decoration: none;
+  border-bottom: 1px solid var(--rule-interactive);
+}
+
+.a11yRules dt a:hover {
+  border-bottom-color: var(--ink-700);
+}
+
+.auditGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  border-top: 1px solid var(--rule-ornament);
+  border-inline-start: 1px solid var(--rule-ornament);
+}
+
+.auditItem {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  min-width: 0;
+  padding: var(--space-4);
+  border-inline-end: 1px solid var(--rule-ornament);
+  border-bottom: 1px solid var(--rule-ornament);
+}
+
+.auditLabel {
+  margin: 0;
+  font-family: var(--font-label);
+  font-size: var(--text-2xs);
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+
+.auditValue {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: var(--text-xl);
+  font-weight: 600;
+  line-height: 1.2;
+  color: var(--ink-700);
+}
+
+.auditNote {
+  margin: 0;
+  font-size: var(--text-xs);
+  line-height: 1.6;
+  color: var(--ink-500);
+}
+
 @media (max-width: 1023px) {
   .hero {
     gap: var(--space-6);

@@ -98,11 +98,11 @@
   text-decoration: none;
   color: var(--ink-700);
   white-space: nowrap;
+  cursor: default;
 }
 
 .indexLink:hover {
-  text-decoration: underline;
-  text-underline-offset: 0.2em;
+  text-decoration: none;
 }
 
 .layout {

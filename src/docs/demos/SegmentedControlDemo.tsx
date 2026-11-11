@@ -96,7 +96,7 @@ export const segmentedStates: SpecimenItem[] = [
       <SegmentedControl
         label="View"
         options={views}
-        defaultValue="grid"
+        defaultValue="list"
         data-state="hover"
       />
     ),

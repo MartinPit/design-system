@@ -1,0 +1,98 @@
+.root {
+  position: relative;
+  display: inline-block;
+  max-width: 100%;
+}
+
+.root[data-state="hover"] > button {
+  background: var(--paper-2);
+}
+
+.root[data-state="focus"] > button {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 2px;
+}
+
+.end .menu {
+  inset-inline-start: auto;
+  inset-inline-end: 0;
+}
+
+.chevron {
+  width: 0.875rem;
+  height: 0.875rem;
+}
+
+.menu {
+  position: absolute;
+  z-index: 45;
+  inset-block-start: calc(100% + 6px);
+  inset-inline-start: 0;
+  min-width: 200px;
+  padding: 4px;
+  border: 1px solid var(--ink-700);
+  background: var(--paper-0);
+  box-shadow: var(--shadow-2);
+  animation: menu-in var(--dur-1) var(--ease-standard);
+}
+
+.menuInline {
+  position: static;
+  margin-top: var(--space-2);
+  box-shadow: none;
+  animation: none;
+}
+
+.itemWrap {
+  display: block;
+}
+
+.separator {
+  height: 1px;
+  margin: 4px 0;
+  background: var(--rule-ornament);
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  min-height: 30px;
+  padding: 4px var(--space-2);
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  color: var(--ink-700);
+  font-family: var(--font-text);
+  font-size: var(--text-sm);
+  line-height: 1.4;
+  text-align: left;
+  cursor: pointer;
+}
+
+.item:hover:not(:disabled),
+.item:focus-visible {
+  background: var(--paper-2);
+  outline: none;
+}
+
+.item:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: -2px;
+}
+
+.item:disabled {
+  color: var(--color-text-disabled);
+  cursor: not-allowed;
+}
+
+.danger {
+  color: var(--danger);
+}
+
+@keyframes menu-in {
+  from {
+    opacity: 0;
+    transform: translateY(-3px);
+  }
+}

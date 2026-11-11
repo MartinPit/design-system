@@ -70,8 +70,8 @@ export function OverviewPage() {
           <dd>27</dd>
         </div>
         <div>
-          <dt>Documented in Phase A</dt>
-          <dd>13</dd>
+          <dt>Documented</dt>
+          <dd>27</dd>
         </div>
         <div>
           <dt>Colour tokens</dt>
