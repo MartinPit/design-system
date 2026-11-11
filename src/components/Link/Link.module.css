@@ -1,0 +1,63 @@
+.link {
+  color: var(--accent-magenta);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.18em;
+  transition: color var(--dur-1) var(--ease-standard);
+  cursor: pointer;
+}
+
+.link:hover,
+.link[data-state="hover"] {
+  color: var(--ink-900);
+  text-decoration-thickness: 2px;
+}
+
+.link:visited,
+.link[data-state="visited"] {
+  color: var(--accent-violet);
+}
+
+.link[data-state="focus"] {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 2px;
+}
+
+.link[aria-disabled="true"],
+.link[data-state="disabled"] {
+  color: var(--color-text-disabled);
+  text-decoration-color: var(--color-text-disabled);
+  cursor: not-allowed;
+}
+
+.standalone {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  min-height: 1.5rem;
+  font-family: var(--font-label);
+  font-size: var(--text-2xs);
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  text-decoration: none;
+  border-bottom: 1px solid currentcolor;
+  padding-bottom: 2px;
+}
+
+.standalone:hover {
+  text-decoration: none;
+}
+
+.mark {
+  font-family: var(--font-text);
+  font-size: 1em;
+  letter-spacing: 0;
+}
+
+.inherit {
+  font: inherit;
+}
+
+.sm {
+  font-size: var(--text-sm);
+}

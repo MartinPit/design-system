@@ -1,0 +1,99 @@
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.stack {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  width: 100%;
+  max-width: 340px;
+}
+
+.field {
+  width: 100%;
+  max-width: 320px;
+}
+
+.panel {
+  width: 100%;
+  max-width: 520px;
+}
+
+.linkCopy {
+  max-width: 46ch;
+  margin: 0;
+  line-height: 1.6;
+}
+
+.caption {
+  margin: 0;
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+}
+
+.deckList {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 420px;
+}
+
+.deckLine {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-4);
+  padding: var(--space-2) 0;
+  border-bottom: 1px solid var(--paper-3);
+  font-size: var(--text-sm);
+}
+
+.deckLine:last-child {
+  border-bottom: 0;
+}
+
+.deckMeta {
+  font-family: var(--font-label);
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.panelText {
+  margin: 0;
+  max-width: 52ch;
+  font-size: var(--text-sm);
+  line-height: 1.6;
+  color: var(--color-text-muted);
+}
+
+.tabContent {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.metric {
+  font-family: var(--font-display);
+  font-size: var(--text-2xl);
+  font-weight: 600;
+  color: var(--ink-700);
+  line-height: 1.1;
+}
+
+.metricLabel {
+  font-family: var(--font-label);
+  font-size: var(--text-2xs);
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+
+.stateWrap {
+  width: 100%;
+  max-width: 300px;
+}

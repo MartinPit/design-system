@@ -17,13 +17,15 @@ npm run verify    # lint + typecheck + tests + production build
 ## Inside
 
 - `src/styles/tokens.css` — single source of truth for colour, type, shape, space, motion.
-- `src/components/` — the 27-component library, CSS Modules per component.
-- `src/docs/` — the documentation page and the registry that drives its nav.
-- 27 components in five groups: Actions, Forms, Navigation, Display, Overlay.
+- `src/components/` — the Phase A library, CSS Modules per component. Thirteen components are documented now; the full inventory is twenty-seven.
+- `src/docs/` — the documentation page and the registry that drives its navigation. Routes: `#/overview`, `#/foundations/<slug>`, `#/components/<slug>`, `#/accessibility`.
+- Components in three delivered groups: Actions, Forms, Navigation. Display and Overlay arrive in Phase B.
 
 ## Quality bar
 
 WCAG 2.2 AA, visible focus, full keyboard operation, responsive 360–1440, `prefers-reduced-motion`. Deliberate deviations from the card are listed on the documentation page's Accessibility section: lavender stays decorative, amber/orange/magenta text uses text-safe variants, seals and redaction bars are `aria-hidden`, the gradient never carries type.
+
+Tests cover a render smoke test per delivered component and keyboard operation for Tabs and Switch.
 
 ## Plan
 

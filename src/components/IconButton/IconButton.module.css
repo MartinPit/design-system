@@ -1,0 +1,69 @@
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  border: 1px solid transparent;
+  border-radius: var(--radius-1);
+  cursor: pointer;
+  transition:
+    background-color var(--dur-1) var(--ease-standard),
+    border-color var(--dur-1) var(--ease-standard),
+    color var(--dur-1) var(--ease-standard),
+    transform var(--dur-1) var(--ease-standard);
+}
+
+.button svg {
+  width: 1.125rem;
+  height: 1.125rem;
+}
+
+.button:active:not(:disabled),
+.button[data-state="active"]:not(:disabled) {
+  transform: translateY(1px);
+}
+
+.button[data-state="focus"] {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 2px;
+}
+
+.button:disabled,
+.button[data-state="disabled"] {
+  cursor: not-allowed;
+  opacity: 0.42;
+}
+
+.sm {
+  width: 1.875rem;
+  height: 1.875rem;
+}
+
+.md {
+  width: 2.375rem;
+  height: 2.375rem;
+}
+
+.solid {
+  background: var(--ink-700);
+  border-color: var(--ink-700);
+  color: var(--paper-0);
+}
+
+.solid:hover:not(:disabled),
+.solid[data-state="hover"]:not(:disabled) {
+  background: var(--ink-900);
+  border-color: var(--ink-900);
+}
+
+.ghost {
+  background: transparent;
+  border-color: var(--rule-ornament);
+  color: var(--ink-700);
+}
+
+.ghost:hover:not(:disabled),
+.ghost[data-state="hover"]:not(:disabled) {
+  background: var(--paper-2);
+  border-color: var(--ink-700);
+}

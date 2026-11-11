@@ -1,0 +1,14 @@
+.textarea {
+  display: block;
+  min-height: 7rem;
+  resize: vertical;
+  line-height: var(--leading-body);
+}
+
+.counter {
+  font-family: var(--font-label);
+  font-size: var(--text-2xs);
+  letter-spacing: 0.04em;
+  color: var(--color-text-muted);
+  font-variant-numeric: tabular-nums;
+}
