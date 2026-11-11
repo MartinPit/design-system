@@ -1,0 +1,153 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background-color: var(--ground-base);
+  background-image: var(--ground-image);
+  background-size: cover;
+  background-attachment: fixed;
+  color: var(--color-text);
+  font-family: var(--font-text);
+  font-size: var(--text-md);
+  line-height: var(--leading-body);
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-display);
+  color: var(--color-text-strong);
+  letter-spacing: var(--tracking-display);
+  line-height: var(--leading-tight);
+  margin: 0;
+}
+
+h1 {
+  font-size: var(--text-4xl);
+  font-variation-settings: "opsz" 72, "wght" 560;
+}
+h2 {
+  font-size: var(--text-3xl);
+  font-variation-settings: "opsz" 48, "wght" 560;
+}
+h3 {
+  font-size: var(--text-2xl);
+}
+h4 {
+  font-size: var(--text-xl);
+}
+
+p {
+  margin: 0 0 var(--space-4);
+}
+
+a {
+  color: var(--color-accent);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.18em;
+}
+
+code,
+kbd,
+samp,
+pre {
+  font-family: var(--font-label);
+  font-size: 0.9em;
+}
+
+img,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+::selection {
+  background: var(--color-selection);
+  color: var(--color-text-strong);
+}
+
+/* Two-colour focus ring: one band clears 3:1 against every part of the ground. */
+:where(a, button, input, select, textarea, summary, [tabindex]):focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 3px;
+  box-shadow: 0 0 0 5px var(--ink);
+}
+
+.skip-link {
+  position: absolute;
+  inset-block-start: 0;
+  inset-inline-start: 0;
+  z-index: 100;
+  padding: var(--space-2) var(--space-4);
+  background: var(--abyss);
+  color: var(--cream);
+  border: 1px solid var(--edge-on-dark);
+  transform: translateY(-120%);
+}
+
+.skip-link:focus {
+  transform: translateY(0);
+}
+
+@media (max-width: 767px) {
+  body {
+    background-attachment: scroll;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+@media (prefers-reduced-transparency: reduce) {
+  :root {
+    --glass-1: rgb(18 11 51 / 0.96);
+    --glass-2: rgb(18 11 51 / 0.98);
+    --glass-1-blur: none;
+    --glass-2-blur: none;
+  }
+}
+
+@media (prefers-contrast: more) {
+  :root {
+    --pattern-tint: transparent;
+    --color-border: rgb(247 242 230 / 0.55);
+    --color-text-muted: var(--cream);
+    --glass-1: var(--violet);
+    --glass-2: var(--violet);
+  }
+}
+
+@media (forced-colors: active) {
+  body {
+    background: Canvas;
+    color: CanvasText;
+  }
+
+  :where(a, button, input, select, textarea, summary, [tabindex]):focus-visible {
+    outline: 3px solid Highlight;
+    box-shadow: none;
+  }
+}
