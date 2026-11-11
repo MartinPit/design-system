@@ -1157,7 +1157,8 @@ export const components: ComponentSpec[] = [
         name: "label",
         type: "string",
         defaultValue: "initials",
-        description: "Accessible name for the person or the profile action.",
+        description:
+          "Accessible name; the initials prefix it when the fallback is shown.",
       },
       {
         name: "size",
@@ -1181,7 +1182,7 @@ export const components: ComponentSpec[] = [
       "Do not add a gradient to an avatar; it is a seal, not the system mark.",
     ],
     a11y:
-      "The resting avatar is role=img with an accessible name. The image is alt=\"\", the initials are aria-hidden, and the interactive variant is a native button.",
+      "The resting avatar is role=img with an accessible name. The image is alt=\"\", the initials are aria-hidden, and the interactive variant is a native button. When initials are visible, they prefix the button's accessible name to satisfy WCAG 2.5.3.",
   },
   {
     id: "table",

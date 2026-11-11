@@ -27,7 +27,8 @@ export function Avatar({
 }: AvatarProps) {
   const [failedSrc, setFailedSrc] = useState<string | null>(null);
   const showImage = Boolean(src) && failedSrc !== src;
-  const name = label ?? initials;
+  const baseName = label ?? initials;
+  const name = interactive && !showImage ? `${initials} — ${baseName}` : baseName;
   const content = (
     <>
       {showImage ? (

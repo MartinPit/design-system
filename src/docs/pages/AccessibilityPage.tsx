@@ -224,11 +224,11 @@ export function AccessibilityPage() {
             <p className={styles.auditLabel}>axe-core · Chromium</p>
             <p className={styles.auditValue}>0 violations</p>
             <p className={styles.auditNote}>
-              All 36 routes at 360 and 1440 widths; Overview, Dialog, Table and
-              Accessibility also at 768 and 1024. Four findings from the first
-              pass were fixed: scrollable tables are focusable regions, repeated
-              breadcrumb and pagination landmarks have unique labels, and the
-              forced hover segment and disabled tag meet contrast.
+              All 36 routes at 390 and 1440 widths; Overview, Dialog, Table and
+              Accessibility also at 768 and 1024, run with the WCAG 2.0/2.1/2.2
+              A+AA tag set. Zero violations after fixing scrollable regions,
+              duplicate landmarks, segmented hover and disabled-tag contrast,
+              the header brand name, and interactive avatar names.
             </p>
           </div>
           <div className={styles.auditItem}>

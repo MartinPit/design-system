@@ -99,7 +99,7 @@ describe("Avatar", () => {
     render(<Avatar initials="MN" label="Open profile" interactive />);
 
     expect(
-      screen.getByRole("button", { name: "Open profile" }),
+      screen.getByRole("button", { name: "MN — Open profile" }),
     ).toBeInTheDocument();
   });
 });

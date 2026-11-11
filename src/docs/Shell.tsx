@@ -82,7 +82,6 @@ export function Shell({
           <a
             href={routes.overview}
             className={styles.brand}
-            aria-label="Arcana, overview"
           >
             <Monogram letter="A" size="sm" />
             <span className={styles.brandText}>
